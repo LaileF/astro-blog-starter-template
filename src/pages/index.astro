@@ -4,97 +4,92 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width" />
     <title>SignalRoutes</title>
-    <style>
-      body {
-        font-family: system-ui, sans-serif;
-        margin: 0;
-        padding: 40px;
-        background: #f7f5f2;
-        color: #222;
-      }
-      h1 {
-        font-size: 42px;
-        margin-bottom: 10px;
-      }
-      h2 {
-        margin-top: 50px;
-      }
-      .section {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .products {
-        margin-top: 30px;
-      }
-      .product {
-        margin-bottom: 25px;
-      }
-      a {
-        color: #b08968;
-        text-decoration: none;
-      }
-    </style>
   </head>
 
-  <body>
-    <div class="section">
-     <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
-    <img src="/logo.png" alt="SignalRoutes logo" style="width:60px;" />
-    <h1 style="margin:0;">SignalRoutes</h1>
-    </div>
+  <body style="font-family: system-ui, sans-serif; margin: 0; background: #f8f7f4; color: #1a1a1a;">
+    
+    <main style="max-width: 800px; margin: 60px auto; padding: 20px;">
+      
+      <!-- HEADER -->
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:30px;">
+        <img src="/logo.png" alt="SignalRoutes logo" style="width:60px; height:60px; object-fit:contain;" />
+        <h1 style="margin:0; font-size:32px;">SignalRoutes</h1>
+      </div>
 
-      <h1>SignalRoutes</h1>
-      <p><strong> Chose the signal. Take the right route.</strong></p>
-
-      <p>
-        SignalRoutes builds software that helps you in finding what actually matters with clairity, and knowing where to go with it
+      <p style="font-weight:600; margin-bottom:10px;">
+        Choose the signal. Take the right route.
       </p>
 
-      <h2>Products</h2>
+      <p style="margin-bottom:40px; line-height:1.5;">
+        SignalRoutes builds software that helps you cut through noise, focus on what matters, and move forward with clarity.
+      </p>
 
-      <div class="products">
-        <div class="product">
+      <!-- PRODUCTS -->
+      <h2 style="margin-bottom:20px;">Products</h2>
+
+      <!-- FounderRoutes -->
+      <div style="display:flex; align-items:flex-start; gap:14px; margin-bottom:24px;">
+        <img src="/founderroutes.png" alt="FounderRoutes logo" style="width:42px; height:42px; object-fit:contain;" />
+        <div>
           <strong>FounderRoutes</strong><br />
           Build your business with clarity. Know what to do now—and what not to do.<br />
-          <a href="https://founder-routes-app-rep-production.up.railway.app/" target="_blank">
-            Visit FounderRoutes →
-          </a>
+          <a href="https://founder-routes-app-rep-production.up.railway.app/">Visit FounderRoutes →</a>
         </div>
+      </div>
 
-        <div class="product">
+      <!-- SpendScore -->
+      <div style="display:flex; align-items:flex-start; gap:14px; margin-bottom:24px;">
+        <img src="/spendscore.png" alt="SpendScore logo" style="width:42px; height:42px; object-fit:contain;" />
+        <div>
           <strong>SpendScore</strong><br />
-          Understand your money in real time. Track you score . Build better habits without complexity.<br />
+          Understand your money in real time. Build better habits without complexity.<br />
           <em>Launching April 1 on Google Play</em>
         </div>
+      </div>
 
-        <div class="product">
+      <!-- SourceBrief -->
+      <div style="display:flex; align-items:flex-start; gap:14px; margin-bottom:24px;">
+        <img src="/sourcebrief.png" alt="SourceBrief logo" style="width:42px; height:42px; object-fit:contain;" />
+        <div>
           <strong>SourceBrief</strong><br />
-          A trusted daily briefing platform that helps you stay informed without information overload.<br />
+          The news, distilled. What matters. What’s true. Nothing extra.<br />
           <em>Join waitlist (coming soon)</em>
         </div>
+      </div>
 
-        <div class="product">
+      <!-- ComplianceIQ -->
+      <div style="display:flex; align-items:flex-start; gap:14px; margin-bottom:24px;">
+        <div style="width:42px; height:42px; display:flex; align-items:center; justify-content:center; font-size:20px;">
+          ⚖️
+        </div>
+        <div>
           <strong>ComplianceIQ</strong><br />
-          Stay on the right track without missing what matters..<br />
+          Stay ahead of compliance without drowning in updates.<br />
           <em>Coming soon</em>
         </div>
       </div>
 
-      <h2>What We Do</h2>
-      <p>
-        Every product we build solves a problem at a different level:
+      <!-- WHAT WE DO -->
+      <h2 style="margin-top:50px;">What We Do</h2>
+
+      <p style="line-height:1.6;">
+        Every product we build solves the same problem at a different level:
       </p>
 
-      <ul>
+      <ul style="line-height:1.6;">
         <li>Information → SourceBrief</li>
         <li>Money → SpendScore</li>
         <li>Business → FounderRoutes</li>
         <li>Regulation → ComplianceIQ</li>
       </ul>
 
-      <p><strong>Clarity first. Direction next.</strong></p>
-    </div>
+      <p style="font-weight:600; margin-top:20px;">
+        Clarity first. Direction next.
+      </p>
+
+    </main>
+
   </body>
 </html>
