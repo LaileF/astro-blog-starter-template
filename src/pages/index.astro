@@ -2,147 +2,156 @@
 ---
 
 <html lang="en">
-  <head>
-    <title>SignalRoutes</title>
-  </head>
+<head>
+  <title>SignalRoutes</title>
+</head>
 
-  <body style="
-    font-family: system-ui, sans-serif;
-    margin:0;
-    background:#f8f7f4;
-    color:#1a1a1a;
+<body style="
+  font-family: system-ui, sans-serif;
+  margin:0;
+  background:#f8f7f4;
+  color:#1a1a1a;
+">
+
+<main style="
+  position:relative;
+  width:100%;
+  height:90vh;
+  max-width:1400px;
+  margin:0 auto;
+">
+
+  <!-- CENTER HUB -->
+  <div style="
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    z-index:2;
   ">
 
-    <main style="
-      max-width:1300px;
-      margin:40px auto;
-      padding:20px;
+    <!-- glow -->
+    <div style="
+      position:absolute;
+      width:260px;
+      height:260px;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      background:radial-gradient(circle, rgba(34,197,94,0.2), transparent 70%);
+      animation:pulse 3s infinite;
+      z-index:0;
+    "></div>
+
+    <div style="
       position:relative;
+      padding:24px 30px;
+      border-radius:16px;
+      background:white;
+      border:1px solid #e5e5e5;
+      box-shadow:0 20px 60px rgba(0,0,0,0.08);
+      z-index:1;
     ">
-
-      <!-- HERO -->
-      <div style="text-align:center; margin-bottom:80px; position:relative;">
-
-        <!-- HUB GLOW -->
-        <div style="
-          position:absolute;
-          left:50%;
-          top:10px;
-          transform:translateX(-50%);
-          width:300px;
-          height:300px;
-          background:radial-gradient(circle, rgba(34,197,94,0.2), transparent 70%);
-          z-index:0;
-          animation:pulse 3s infinite;
-        "></div>
-
-        <img src="/logo.png" style="height:80px; position:relative; z-index:1;" />
-
-        <h1 style="margin:10px 0; font-size:42px; position:relative; z-index:1;">
-          SignalRoutes
-        </h1>
-
-        <p style="font-size:18px; font-weight:500; margin:0; position:relative; z-index:1;">
-          Clear signals. Better decisions.
-        </p>
-
-        <p style="
-          max-width:720px;
-          margin:12px auto 0;
-          color:#555;
-          line-height:1.6;
-          position:relative;
-          z-index:1;
-        ">
-          A system of tools designed to cut through noise across money, business, news, and compliance.
-        </p>
-      </div>
-
-      <!-- SVG CONNECTION LINES -->
-      <svg width="100%" height="300" style="position:absolute; top:180px; left:0; z-index:0;">
-        <line x1="50%" y1="0" x2="20%" y2="250" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
-        <line x1="50%" y1="0" x2="80%" y2="250" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
-        <line x1="50%" y1="0" x2="30%" y2="250" stroke="rgba(34,197,94,0.15)" stroke-width="1"/>
-        <line x1="50%" y1="0" x2="70%" y2="250" stroke="rgba(34,197,94,0.15)" stroke-width="1"/>
-      </svg>
-
-      <!-- CARDS -->
-      <div style="
-        display:grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap:100px 140px;
-        position:relative;
-        z-index:1;
-      ">
-
-        <!-- FounderRoutes -->
-        <div class="card" style="transform:translateY(-40px);">
-          <img src="/founderroutes.png" style="width:52px;" />
-          <h3>FounderRoutes</h3>
-          <p>Build your business with clarity. Know what to do now—and what not to do.</p>
-          <a href="#">Visit →</a>
-        </div>
-
-        <!-- SpendScore -->
-        <div class="card" style="transform:translateY(40px);">
-          <img src="/spendscore.png" style="width:52px;" />
-          <h3>SpendScore</h3>
-          <p>Understand your money in real time. Build better habits without complexity.</p>
-          <p style="font-size:13px;color:#666;">Launching April 1</p>
-        </div>
-
-        <!-- SourceBrief -->
-        <div class="card" style="transform:translateY(40px);">
-          <img src="/sourcebrief.png" style="width:52px;" />
-          <h3>SourceBrief</h3>
-          <p>The news, distilled. What matters. What’s true.</p>
-          <a href="https://forms.gle/ZmfuxiLXw5wnSC257" target="_blank">Join waitlist →</a>
-        </div>
-
-        <!-- ComplianceIQ -->
-        <div class="card" style="transform:translateY(-40px);">
-          <div style="
-            width:52px;height:52px;
-            display:flex;align-items:center;justify-content:center;
-            background:#fafafa;border-radius:8px;
-          ">⚖️</div>
-
-          <h3>ComplianceIQ</h3>
-          <p>Stay ahead of compliance without drowning in updates.</p>
-          <p style="font-size:13px;color:#777;">Coming soon</p>
-        </div>
-
-      </div>
-
-      <!-- FOOT -->
-      <p style="text-align:center; margin-top:80px; color:#666;">
-        Clarity first. Direction next.
+      <img src="/logo.png" style="height:50px;" />
+      <h2 style="margin:10px 0 5px;">SignalRoutes</h2>
+      <p style="font-size:14px; color:#555;">
+        Clear signals. Better decisions.
       </p>
+    </div>
 
-    </main>
+  </div>
 
-    <!-- STYLES -->
-    <style>
-      .card {
-        padding:28px;
-        border-radius:16px;
-        background:white;
-        border:1px solid #e5e5e5;
-        box-shadow:0 10px 30px rgba(0,0,0,0.05);
-        transition:all 0.25s ease;
-      }
+  <!-- SVG CONNECTIONS -->
+  <svg style="position:absolute; inset:0; z-index:1; pointer-events:none;">
 
-      .card:hover {
-        transform:translateY(-5px) scale(1.02);
-        box-shadow:0 20px 50px rgba(34,197,94,0.25);
-      }
+    <!-- lines -->
+    <line x1="50%" y1="50%" x2="15%" y2="20%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
+    <line x1="50%" y1="50%" x2="85%" y2="20%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
+    <line x1="50%" y1="50%" x2="15%" y2="80%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
+    <line x1="50%" y1="50%" x2="85%" y2="80%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
 
-      @keyframes pulse {
-        0% { opacity:0.4; transform:translateX(-50%) scale(1); }
-        50% { opacity:0.8; transform:translateX(-50%) scale(1.1); }
-        100% { opacity:0.4; transform:translateX(-50%) scale(1); }
-      }
-    </style>
+    <!-- pulse dots -->
+    <circle r="4" fill="#22c55e">
+      <animateMotion dur="2s" repeatCount="indefinite"
+        path="M 700 400 L 200 100" />
+    </circle>
 
-  </body>
+  </svg>
+
+  <!-- CARDS -->
+
+  <!-- top left -->
+  <div class="card" style="top:10%; left:8%;">
+    <img src="/founderroutes.png" />
+    <h3>FounderRoutes</h3>
+    <p>Build your business with clarity.</p>
+    <a href="#">Visit →</a>
+  </div>
+
+  <!-- top right -->
+  <div class="card" style="top:10%; right:8%;">
+    <img src="/spendscore.png" />
+    <h3>SpendScore</h3>
+    <p>Understand your money in real time.</p>
+  </div>
+
+  <!-- bottom left -->
+  <div class="card" style="bottom:10%; left:8%;">
+    <img src="/sourcebrief.png" />
+    <h3>SourceBrief</h3>
+    <p>The news, distilled.</p>
+    <a href="https://forms.gle/ZmfuxiLXw5wnSC257">Join waitlist →</a>
+  </div>
+
+  <!-- bottom right -->
+  <div class="card" style="bottom:10%; right:8%;">
+    <div class="icon">⚖️</div>
+    <h3>ComplianceIQ</h3>
+    <p>Stay ahead of compliance.</p>
+  </div>
+
+</main>
+
+<style>
+.card {
+  position:absolute;
+  width:260px;
+  padding:20px;
+  border-radius:16px;
+  background:white;
+  border:1px solid #e5e5e5;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  transition:all .25s ease;
+}
+
+.card img {
+  width:42px;
+  margin-bottom:10px;
+}
+
+.card:hover {
+  transform:scale(1.04);
+  box-shadow:0 20px 60px rgba(34,197,94,0.25);
+}
+
+.icon {
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fafafa;
+  border-radius:8px;
+  margin-bottom:10px;
+}
+
+@keyframes pulse {
+  0% { opacity:0.4; transform:translate(-50%, -50%) scale(1); }
+  50% { opacity:0.9; transform:translate(-50%, -50%) scale(1.2); }
+  100% { opacity:0.4; transform:translate(-50%, -50%) scale(1); }
+}
+</style>
+
+</body>
 </html>
