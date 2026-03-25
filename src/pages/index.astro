@@ -16,7 +16,7 @@
 <main style="
   position:relative;
   width:100%;
-  height:90vh;
+  height:100vh;
   max-width:1400px;
   margin:0 auto;
 ">
@@ -28,87 +28,82 @@
     left:50%;
     transform:translate(-50%, -50%);
     text-align:center;
-    z-index:2;
+    z-index:3;
   ">
 
-    <!-- glow -->
+    <!-- GOLD/GREEN SIGNAL GLOW -->
     <div style="
       position:absolute;
-      width:260px;
-      height:260px;
+      width:320px;
+      height:320px;
       top:50%;
       left:50%;
       transform:translate(-50%, -50%);
-      background:radial-gradient(circle, rgba(34,197,94,0.2), transparent 70%);
+      background:radial-gradient(circle, rgba(180,140,40,0.25), transparent 70%);
       animation:pulse 3s infinite;
       z-index:0;
     "></div>
 
     <div style="
       position:relative;
-      padding:24px 30px;
-      border-radius:16px;
+      padding:30px 40px;
+      border-radius:18px;
       background:white;
       border:1px solid #e5e5e5;
-      box-shadow:0 20px 60px rgba(0,0,0,0.08);
+      box-shadow:0 30px 80px rgba(0,0,0,0.12);
       z-index:1;
+      width:300px;
     ">
-      <img src="/logo.png" style="height:50px;" />
-      <h2 style="margin:10px 0 5px;">SignalRoutes</h2>
-      <p style="font-size:14px; color:#555;">
-        Clear signals. Better decisions.
-      </p>
+      <img src="/logo.png" style="height:60px;" />
+      <h2 style="margin:10px 0;">SignalRoutes</h2>
+      <p style="color:#555;">Clear signals. Better decisions.</p>
     </div>
 
   </div>
 
-  <!-- SVG CONNECTIONS -->
-  <svg style="position:absolute; inset:0; z-index:1; pointer-events:none;">
+  <!-- SVG CONNECTIONS (CLEAN, NO X) -->
+  <svg style="position:absolute; inset:0; z-index:1;">
 
-    <!-- lines -->
-    <line x1="50%" y1="50%" x2="15%" y2="20%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
-    <line x1="50%" y1="50%" x2="85%" y2="20%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
-    <line x1="50%" y1="50%" x2="15%" y2="80%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
-    <line x1="50%" y1="50%" x2="85%" y2="80%" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
-
-    <!-- pulse dots -->
-    <circle r="4" fill="#22c55e">
-      <animateMotion dur="2s" repeatCount="indefinite"
-        path="M 700 400 L 200 100" />
-    </circle>
+    <!-- lines from center -->
+    <line x1="700" y1="400" x2="200" y2="120" stroke="rgba(180,140,40,0.4)" stroke-width="2"/>
+    <line x1="700" y1="400" x2="1200" y2="120" stroke="rgba(180,140,40,0.4)" stroke-width="2"/>
+    <line x1="700" y1="400" x2="200" y2="700" stroke="rgba(180,140,40,0.4)" stroke-width="2"/>
+    <line x1="700" y1="400" x2="1200" y2="700" stroke="rgba(180,140,40,0.4)" stroke-width="2"/>
 
   </svg>
 
-  <!-- CARDS -->
+  <!-- CARDS (BIGGER + READABLE) -->
 
-  <!-- top left -->
-  <div class="card" style="top:10%; left:8%;">
+  <!-- TL -->
+  <div class="card" style="top:8%; left:8%;">
     <img src="/founderroutes.png" />
     <h3>FounderRoutes</h3>
-    <p>Build your business with clarity.</p>
+    <p>Build your business with clarity. Know what to do now—and what not to do.</p>
     <a href="#">Visit →</a>
   </div>
 
-  <!-- top right -->
-  <div class="card" style="top:10%; right:8%;">
+  <!-- TR -->
+  <div class="card" style="top:8%; right:8%;">
     <img src="/spendscore.png" />
     <h3>SpendScore</h3>
-    <p>Understand your money in real time.</p>
+    <p>Understand your money in real time. Build better habits without complexity.</p>
+    <p class="sub">Launching April 1</p>
   </div>
 
-  <!-- bottom left -->
-  <div class="card" style="bottom:10%; left:8%;">
+  <!-- BL -->
+  <div class="card" style="bottom:8%; left:8%;">
     <img src="/sourcebrief.png" />
     <h3>SourceBrief</h3>
-    <p>The news, distilled.</p>
+    <p>The news, distilled. What matters. What’s true. Nothing extra.</p>
     <a href="https://forms.gle/ZmfuxiLXw5wnSC257">Join waitlist →</a>
   </div>
 
-  <!-- bottom right -->
-  <div class="card" style="bottom:10%; right:8%;">
+  <!-- BR -->
+  <div class="card" style="bottom:8%; right:8%;">
     <div class="icon">⚖️</div>
     <h3>ComplianceIQ</h3>
-    <p>Stay ahead of compliance.</p>
+    <p>Stay ahead of compliance without drowning in updates.</p>
+    <p class="sub">Coming soon</p>
   </div>
 
 </main>
@@ -116,39 +111,44 @@
 <style>
 .card {
   position:absolute;
-  width:260px;
-  padding:20px;
-  border-radius:16px;
+  width:320px;
+  padding:26px;
+  border-radius:18px;
   background:white;
   border:1px solid #e5e5e5;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
   transition:all .25s ease;
 }
 
 .card img {
-  width:42px;
-  margin-bottom:10px;
+  width:48px;
+  margin-bottom:12px;
 }
 
 .card:hover {
-  transform:scale(1.04);
-  box-shadow:0 20px 60px rgba(34,197,94,0.25);
+  transform:scale(1.05);
+  box-shadow:0 25px 80px rgba(180,140,40,0.35);
+}
+
+.sub {
+  font-size:13px;
+  color:#777;
 }
 
 .icon {
-  width:42px;
-  height:42px;
+  width:48px;
+  height:48px;
   display:flex;
   align-items:center;
   justify-content:center;
   background:#fafafa;
-  border-radius:8px;
-  margin-bottom:10px;
+  border-radius:10px;
+  margin-bottom:12px;
 }
 
 @keyframes pulse {
   0% { opacity:0.4; transform:translate(-50%, -50%) scale(1); }
-  50% { opacity:0.9; transform:translate(-50%, -50%) scale(1.2); }
+  50% { opacity:1; transform:translate(-50%, -50%) scale(1.15); }
   100% { opacity:0.4; transform:translate(-50%, -50%) scale(1); }
 }
 </style>
