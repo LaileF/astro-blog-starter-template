@@ -1,11 +1,10 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  server: {
-    host: true
-  },
+  site: 'https://signalroutes.work',
+
   preview: {
     host: true,
-    allowedHosts: ['signalroutes.work','.railway.app ']
+    allowedHosts: ['signalroutes.work', '.railway.app']
   }
 });
