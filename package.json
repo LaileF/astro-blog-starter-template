@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "start": "astro preview --host"
+    "preview": "astro preview --host"
   },
   "dependencies": {
     "astro": "5.16.9",
