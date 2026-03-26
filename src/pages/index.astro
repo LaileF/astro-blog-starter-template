@@ -72,34 +72,65 @@ body {
 
 /* BACKGROUND BASE */
 .bg {
-  position:fixed;
-  inset:0;
+  position: fixed;
+  inset: 0;
   background:
-    radial-gradient(circle at center, rgba(180,140,40,0.18), transparent 65%),
-    linear-gradient(rgba(34,197,94,0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34,197,94,0.12) 1px, transparent 1px),
+    radial-gradient(circle at center, rgba(180,140,40,0.20), transparent 60%),
     #f4f2ee;
-
-  background-size:
-    100% 100%,
-    140px 140px,
-    140px 140px,
-    100% 100%;
+  overflow: hidden;
 }
 
-/* CIRCUIT DETAIL LAYER */
+/* CIRCUIT SYSTEM */
 .bg::after {
-  content:"";
-  position:absolute;
-  inset:0;
+  content: "";
+  position: absolute;
+  inset: 0;
 
-  background:
-    linear-gradient(90deg, rgba(34,197,94,0.25) 2px, transparent 2px),
-    linear-gradient(rgba(34,197,94,0.25) 2px, transparent 2px);
+  background-image: url("data:image/svg+xml;utf8,
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+    <g stroke='%2322c55e' stroke-width='1.2' fill='none' opacity='0.18'>
 
-  background-size: 180px 180px;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-  opacity:0.25;
+      <!-- RADIAL PATHS FROM CENTER -->
+      <path d='M600 400 L300 150'/>
+      <path d='M600 400 L900 150'/>
+      <path d='M600 400 L300 650'/>
+      <path d='M600 400 L900 650'/>
+
+      <!-- BRANCHES -->
+      <path d='M450 275 L450 220 L400 220'/>
+      <path d='M750 275 L750 220 L800 220'/>
+      <path d='M450 525 L450 580 L400 580'/>
+      <path d='M750 525 L750 580 L800 580'/>
+
+      <!-- EXTRA CIRCUIT DETAIL -->
+      <path d='M600 400 L600 200'/>
+      <path d='M600 400 L600 600'/>
+
+    </g>
+  </svg>");
+
+  background-size: cover;
+}
+
+/* SIGNAL FLOW (SUBTLE MOTION) */
+.bg::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
+  animation: signalPulse 4s ease-in-out infinite;
+  opacity: 0.25;
+}
+
+@keyframes signalPulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.2; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.35; }
+  100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.2; }
 }
 
 /* OPTIONAL NODE DOTS */
