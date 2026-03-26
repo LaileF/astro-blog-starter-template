@@ -15,33 +15,31 @@
       }
 
       /* BACKGROUND */
-      .bg {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
+   .bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 
-        background:
-          radial-gradient(circle at center, rgba(180,140,40,0.25), transparent 60%),
-          url('/circuit.png');
+  background:
+    radial-gradient(circle at center, rgba(180,140,40,0.20), transparent 60%),
+    url('/circuit.png');
 
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 1100px;
-      }
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1000px;
+}
 
-      /* COLOR OVERLAY (blue → green) */
-      .bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
+/* REMOVE muddy overlay and use THIS instead */
+.bg::before {
+  content:"";
+  position:absolute;
+  inset:0;
 
-        background: linear-gradient(
-          rgba(30, 90, 160, 0.25),   /* blue */
-          rgba(40, 140, 90, 0.25)    /* green */
-        );
-
-        mix-blend-mode: multiply;
-      }
+  background: linear-gradient(
+    rgba(10, 40, 70, 0.15),   /* clean blue */
+    rgba(20, 80, 50, 0.15)    /* clean green */
+  );
+}
 
       /* SOFT CENTER GLOW */
       .bg::after {
@@ -72,9 +70,9 @@
       }
 
       .hub-card {
-        width: 320px;
-        padding: 24px;
-        border-radius: 16px;
+        width: 360px;
+        padding: 28px;
+        border-radius: 18px;
         background: white;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         text-align: center;
@@ -82,13 +80,13 @@
 
       /* APP CARDS */
       .card {
-        position: absolute;
-        width: 280px;
-        padding: 20px;
-        border-radius: 14px;
-        background: white;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        transition: all 0.2s ease;
+      position: absolute;
+      width: 320px;
+      padding: 24px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+      transition: all 0.2s ease;
       }
 
       .card:hover {
@@ -97,10 +95,10 @@
       }
 
       /* POSITIONS */
-      .top-left { top: 10%; left: 8%; }
-      .top-right { top: 10%; right: 8%; }
-      .bottom-left { bottom: 10%; left: 8%; }
-      .bottom-right { bottom: 10%; right: 8%; }
+     .top-left    { top: 18%; left: 18%; }
+      .top-right   { top: 18%; right: 18%; }
+      .bottom-left { bottom: 18%; left: 18%; }
+      .bottom-right{ bottom: 18%; right: 18%; }
 
       h2 {
         margin: 10px 0 8px;
@@ -141,27 +139,39 @@
 
       <!-- CARDS -->
       <div class="card top-left">
+        <img src="/founderroutes.png" width="36" style="margin-bottom:8px;" />
         <h3>FounderRoutes</h3>
-        <p>Build your business with clarity.</p>
+        <p>
+        Build your business with clarity. Know what to do now—and what not to do.
+        </p>
         <a href="https://founder-routes-app-rep-production.up.railway.app/">Visit →</a>
       </div>
 
       <div class="card top-right">
+        <img src="/spendscore.png" width="36" style="margin-bottom:8px;" />
         <h3>SpendScore</h3>
-        <p>Understand your money in real time.</p>
-        <p>Launching April 1</p>
+        <p>
+        Understand your money in real time, track your score. Build better habits without complexity.
+        </p>
+        <p style="opacity:.7;">Launching April 1</p>
       </div>
 
       <div class="card bottom-left">
+        <img src="/sourcebrief.png" width="36" style="margin-bottom:8px;" />
         <h3>SourceBrief</h3>
-        <p>The news, distilled.</p>
+        <p>
+        The news, distilled. What matters to you. What’s true. Nothing extra.
+        </p>
         <a href="#">Join waitlist →</a>
       </div>
 
       <div class="card bottom-right">
+        <img src="/logo.png" width="36" style="margin-bottom:8px; opacity:.6;" />
         <h3>ComplianceIQ</h3>
-        <p>Stay ahead of compliance.</p>
-        <p>Coming soon</p>
+        <p>
+        Stay ahead of compliance without drowning in updates and spreadsheets.
+        </p>
+        <p style="opacity:.6;">Coming soon</p>
       </div>
 
     </div>
