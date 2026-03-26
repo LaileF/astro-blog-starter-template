@@ -16,13 +16,14 @@ body {
   background: linear-gradient(135deg, #1e3a5f 0%, #3a6b8a 100%);
 }
 
-/* 🟢 TRUE GREEN CIRCUIT (NO COLOR BUGS) */
+/* 🟢 CIRCUIT — BRIGHT + CLEAR */
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: url('/circuit.png') center/1400px no-repeat;
-  opacity: 0.18;
+  opacity: 0.35;
+  filter: brightness(1.5) saturate(1.5);
 }
 
 /* GREEN OVERLAY */
@@ -30,7 +31,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(34, 197, 94, 0.25);
+  background: rgba(34, 197, 94, 0.35);
   mix-blend-mode: overlay;
 }
 
@@ -50,25 +51,26 @@ body {
 
 .hub-card {
   background: white;
-  padding: 36px;
+  padding: 40px;
   border-radius: 18px;
-  width: 340px;
+  width: 360px;
   text-align: center;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
   animation: float 4s ease-in-out infinite;
+  cursor: pointer;
 }
 
 @keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-8px); }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
 
 /* CARDS */
 .card {
   position: absolute;
-  width: 360px;
-  padding: 26px;
+  width: 380px;
+  padding: 28px;
   background: white;
   border-radius: 16px;
   box-shadow: 0 25px 60px rgba(0,0,0,0.25);
@@ -81,46 +83,38 @@ body {
 }
 
 /* POSITIONS */
-.top-left     { top: 10%; left: 10%; }
-.top-right    { top: 10%; right: 10%; }
-.bottom-left  { bottom: 10%; left: 10%; }
-.bottom-right { bottom: 10%; right: 10%; }
+.top-left     { top: 10%; left: 8%; }
+.top-right    { top: 10%; right: 8%; }
+.bottom-left  { bottom: 10%; left: 8%; }
+.bottom-right { bottom: 10%; right: 8%; }
 
-/* LOGOS */
+/* LOGOS BIGGER */
 .logo-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
-  margin-bottom: 10px;
+  height: 80px;
+  margin-bottom: 12px;
 }
 
 .logo-wrap img {
-  max-height: 70px;
-  object-fit: contain;
+  max-height: 80px;
 }
 
 /* TEXT */
-h3 { margin: 6px 0; }
+h3 { margin: 6px 0; font-size: 18px; }
 p { font-size: 14px; color: #444; }
 
 /* MODAL */
 .modal {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-}
-
-.modal-content {
+  width: 360px;
   background: white;
-  padding: 30px;
-  border-radius: 16px;
-  width: 420px;
-  text-align: center;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+  display: none;
+  z-index: 30;
 }
 
 .modal a {
@@ -129,13 +123,11 @@ p { font-size: 14px; color: #444; }
   color: #2563eb;
 }
 
-.modal button {
-  margin-top: 20px;
-  padding: 8px 16px;
-  border: none;
-  background: #2563eb;
-  color: white;
-  border-radius: 6px;
+.close {
+  margin-top: 15px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #888;
 }
 </style>
 
@@ -145,95 +137,94 @@ p { font-size: 14px; color: #444; }
 
   <!-- CENTER -->
   <div class="hub">
-    <div class="hub-card">
-      <div class="logo-wrap">
-        <img src="/logo.png" />
-      </div>
+    <div class="hub-card" onclick="openModal(event,'signal')">
+      <div class="logo-wrap"><img src="/logo.png" /></div>
       <h3>SignalRoutes</h3>
       <p>Clear signals. Better decisions.</p>
       <p style="font-size:13px;">
-        Apps designed to cut through noise across money, business, news, and compliance—so you always know what matters and what to do next.
+        A system of tools designed to cut through noise across money, business, news, and compliance.
       </p>
     </div>
   </div>
 
-  <!-- FOUNDERROUTES -->
-  <div class="card top-left" onclick="openModal('founder')">
+  <!-- CARDS -->
+  <div class="card top-left" onclick="openModal(event,'founder')">
     <div class="logo-wrap"><img src="/founderroutes.png" /></div>
     <h3>FounderRoutes</h3>
-    <p>Build your business with direction—not guesswork. Know what to do now—and what not to do.</p>
+    <p>Build your business with direction—not guesswork.</p>
   </div>
 
-  <!-- SPENDSCORE -->
-  <div class="card top-right" onclick="openModal('spend')">
+  <div class="card top-right" onclick="openModal(event,'spend')">
     <div class="logo-wrap"><img src="/spendscore.png" /></div>
     <h3>SpendScore</h3>
-    <p>Understand your money in real time and track your score. Build better habits without complexity.</p>
+    <p>Understand your money in real time and build better habits.</p>
   </div>
 
-  <!-- SOURCEBRIEF -->
-  <div class="card bottom-left" onclick="openModal('source')">
+  <div class="card bottom-left" onclick="openModal(event,'source')">
     <div class="logo-wrap"><img src="/sourcebrief.png" /></div>
     <h3>SourceBrief</h3>
-    <p>The news, distilled. What matters to you. What’s true. Nothing extra.</p>
+    <p>The news, distilled. What matters. Nothing extra.</p>
   </div>
 
-  <!-- COMPLIANCE -->
-  <div class="card bottom-right" onclick="openModal('compliance')">
+  <div class="card bottom-right" onclick="openModal(event,'compliance')">
     <div class="logo-wrap"><img src="/compliance.png" /></div>
     <h3>ComplianceIQ</h3>
-    <p>Stay ahead of compliance without drowning in updates or spreadsheets.</p>
+    <p>Stay ahead of compliance without overwhelm.</p>
   </div>
 
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content" id="modal-content"></div>
-</div>
+<div id="modal" class="modal"></div>
 
 <script>
-window.openModal = function(type) {
+window.openModal = function(e,type) {
   const modal = document.getElementById('modal');
-  const content = document.getElementById('modal-content');
 
   const data = {
+    signal: {
+      title: "SignalRoutes",
+      text: "A central intelligence layer connecting all tools.",
+      extra: "This is the system behind everything."
+    },
     founder: {
       title: "FounderRoutes",
-      text: "Business clarity system with tools and direction.",
+      text: "Business clarity system with tools + direction.",
       extra: "FounderRoutes@gmail.com",
       link: "https://founder-routes-app-rep-production.up.railway.app/"
     },
     spend: {
       title: "SpendScore",
-      text: "Track and improve your financial habits.",
+      text: "Real-time financial awareness + behavior tracking.",
       extra: "Launching April • Spendscorehelp@gmail.com"
     },
     source: {
       title: "SourceBrief",
-      text: "Smart, distilled news that cuts through noise.",
-      extra: "Join the waitlist",
+      text: "Distilled news built for clarity.",
       link: "https://forms.gle/diLbSQKf6aKchR3w7"
     },
     compliance: {
       title: "ComplianceIQ",
-      text: "Compliance made simple.",
-      extra: "Currently in development"
+      text: "Compliance without spreadsheets or overwhelm.",
+      extra: "In development"
     }
   };
 
   const item = data[type];
 
-  content.innerHTML = `
+  modal.innerHTML = `
     <h3>${item.title}</h3>
     <p>${item.text}</p>
-    <p>${item.extra}</p>
+    ${item.extra ? `<p>${item.extra}</p>` : ""}
     ${item.link ? `<a href="${item.link}" target="_blank">Open →</a>` : ""}
-    <br/><br/>
-    <button onclick="closeModal()">Close</button>
+    <div class="close" onclick="closeModal()">Close</div>
   `;
 
-  modal.style.display = 'flex';
+  modal.style.display = 'block';
+
+  const rect = e.currentTarget.getBoundingClientRect();
+
+  modal.style.top = rect.top + "px";
+  modal.style.left = (rect.right + 15) + "px";
 };
 
 window.closeModal = function() {
