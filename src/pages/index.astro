@@ -8,7 +8,7 @@ body {
   overflow: hidden;
 }
 
-/* 🔵 CLEAN BLUE BACKGROUND */
+/* 🔵 BACKGROUND */
 .bg {
   position: fixed;
   inset: 0;
@@ -16,14 +16,22 @@ body {
   background: linear-gradient(135deg, #1e3a5f 0%, #3a6b8a 100%);
 }
 
-/* 🟢 GREEN CIRCUIT (FORCED CORRECT COLOR) */
+/* 🟢 TRUE GREEN CIRCUIT (NO COLOR BUGS) */
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: url('/circuit.png') center/1400px no-repeat;
-  opacity: 0.45;
-  filter: hue-rotate(95deg) brightness(1.3) contrast(1.1);
+  opacity: 0.18;
+}
+
+/* GREEN OVERLAY */
+.bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 197, 94, 0.25);
+  mix-blend-mode: overlay;
 }
 
 /* SCENE */
@@ -32,7 +40,7 @@ body {
   height: 100vh;
 }
 
-/* ✅ CENTER HUB (FIXED PROPERLY) */
+/* CENTER HUB */
 .hub {
   position: absolute;
   top: 50%;
@@ -51,8 +59,8 @@ body {
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
 
@@ -78,7 +86,7 @@ body {
 .bottom-left  { bottom: 10%; left: 10%; }
 .bottom-right { bottom: 10%; right: 10%; }
 
-/* LOGO FIX (CONSISTENT) */
+/* LOGOS */
 .logo-wrap {
   display: flex;
   justify-content: center;
@@ -89,7 +97,7 @@ body {
 
 .logo-wrap img {
   max-height: 70px;
-  transform: scale(1.3);
+  object-fit: contain;
 }
 
 /* TEXT */
@@ -129,7 +137,6 @@ p { font-size: 14px; color: #444; }
   color: white;
   border-radius: 6px;
 }
-
 </style>
 
 <div class="bg"></div>
@@ -186,7 +193,7 @@ p { font-size: 14px; color: #444; }
 </div>
 
 <script>
-function openModal(type) {
+window.openModal = function(type) {
   const modal = document.getElementById('modal');
   const content = document.getElementById('modal-content');
 
@@ -194,13 +201,13 @@ function openModal(type) {
     founder: {
       title: "FounderRoutes",
       text: "Business clarity system with tools and direction.",
-      extra: "Email: FounderRoutes@gmail.com",
+      extra: "FounderRoutes@gmail.com",
       link: "https://founder-routes-app-rep-production.up.railway.app/"
     },
     spend: {
       title: "SpendScore",
-      text: "Track spending habits and improve your financial decisions.",
-      extra: "Launching April • Email: Spendscorehelp@gmail.com"
+      text: "Track and improve your financial habits.",
+      extra: "Launching April • Spendscorehelp@gmail.com"
     },
     source: {
       title: "SourceBrief",
@@ -210,7 +217,7 @@ function openModal(type) {
     },
     compliance: {
       title: "ComplianceIQ",
-      text: "Simple compliance tracking and insights.",
+      text: "Compliance made simple.",
       extra: "Currently in development"
     }
   };
@@ -227,9 +234,9 @@ function openModal(type) {
   `;
 
   modal.style.display = 'flex';
-}
+};
 
-function closeModal() {
+window.closeModal = function() {
   document.getElementById('modal').style.display = 'none';
-}
+};
 </script>
