@@ -8,27 +8,22 @@ body {
   overflow: hidden;
 }
 
-/* LIGHTER BACKGROUND */
+/* 🔵 CLEAN BLUE BACKGROUND */
 .bg {
   position: fixed;
   inset: 0;
   z-index: -2;
-
   background: linear-gradient(135deg, #1e3a5f 0%, #3a6b8a 100%);
 }
 
-/* CIRCUIT — CLEAR */
+/* 🟢 GREEN CIRCUIT (FORCED CORRECT COLOR) */
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
-
   background: url('/circuit.png') center/1400px no-repeat;
-
   opacity: 0.45;
-
-  /* 👇 THIS is the key change */
-  filter: hue-rotate(120deg) brightness(1.3) contrast(1.1);
+  filter: hue-rotate(95deg) brightness(1.3) contrast(1.1);
 }
 
 /* SCENE */
@@ -37,7 +32,7 @@ body {
   height: 100vh;
 }
 
-/* CENTER */
+/* ✅ CENTER HUB (FIXED PROPERLY) */
 .hub {
   position: absolute;
   top: 50%;
@@ -45,8 +40,13 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* FIXED FLOAT (does NOT break centering) */
 .hub-card {
+  background: white;
+  padding: 36px;
+  border-radius: 18px;
+  width: 340px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.25);
   animation: float 4s ease-in-out infinite;
 }
 
@@ -56,7 +56,7 @@ body {
   100% { transform: translateY(0px); }
 }
 
-/* CARDS (CLICKABLE NOW) */
+/* CARDS */
 .card {
   position: absolute;
   width: 360px;
@@ -78,7 +78,7 @@ body {
 .bottom-left  { bottom: 10%; left: 10%; }
 .bottom-right { bottom: 10%; right: 10%; }
 
-/* LOGO NORMALIZATION */
+/* LOGO FIX (CONSISTENT) */
 .logo-wrap {
   display: flex;
   justify-content: center;
@@ -89,9 +89,7 @@ body {
 
 .logo-wrap img {
   max-height: 70px;
-  width: auto;
-  object-fit: contain;
-  transform: scale(1.4);
+  transform: scale(1.3);
 }
 
 /* TEXT */
@@ -113,15 +111,21 @@ p { font-size: 14px; color: #444; }
   background: white;
   padding: 30px;
   border-radius: 16px;
-  width: 400px;
+  width: 420px;
   text-align: center;
+}
+
+.modal a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #2563eb;
 }
 
 .modal button {
   margin-top: 20px;
   padding: 8px 16px;
   border: none;
-  background: #4e80ed;
+  background: #2563eb;
   color: white;
   border-radius: 6px;
 }
@@ -141,33 +145,36 @@ p { font-size: 14px; color: #444; }
       <h3>SignalRoutes</h3>
       <p>Clear signals. Better decisions.</p>
       <p style="font-size:13px;">
-        Apps designed to cut through noise across money, business, news, and compliance.
+        Apps designed to cut through noise across money, business, news, and compliance—so you always know what matters and what to do next.
       </p>
     </div>
   </div>
 
-  <!-- CARDS -->
+  <!-- FOUNDERROUTES -->
   <div class="card top-left" onclick="openModal('founder')">
     <div class="logo-wrap"><img src="/founderroutes.png" /></div>
     <h3>FounderRoutes</h3>
     <p>Build your business with direction—not guesswork. Know what to do now—and what not to do.</p>
   </div>
 
+  <!-- SPENDSCORE -->
   <div class="card top-right" onclick="openModal('spend')">
     <div class="logo-wrap"><img src="/spendscore.png" /></div>
     <h3>SpendScore</h3>
     <p>Understand your money in real time and track your score. Build better habits without complexity.</p>
   </div>
 
+  <!-- SOURCEBRIEF -->
   <div class="card bottom-left" onclick="openModal('source')">
     <div class="logo-wrap"><img src="/sourcebrief.png" /></div>
     <h3>SourceBrief</h3>
     <p>The news, distilled. What matters to you. What’s true. Nothing extra.</p>
   </div>
 
+  <!-- COMPLIANCE -->
   <div class="card bottom-right" onclick="openModal('compliance')">
     <div class="logo-wrap"><img src="/compliance.png" /></div>
-    <h3>Compliance IQ</h3>
+    <h3>ComplianceIQ</h3>
     <p>Stay ahead of compliance without drowning in updates or spreadsheets.</p>
   </div>
 
@@ -175,11 +182,7 @@ p { font-size: 14px; color: #444; }
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="modal-content" id="modal-content">
-    <h3>Coming Soon</h3>
-    <p>Details here</p>
-    <button onclick="closeModal()">Close</button>
-  </div>
+  <div class="modal-content" id="modal-content"></div>
 </div>
 
 <script>
@@ -190,21 +193,25 @@ function openModal(type) {
   const data = {
     founder: {
       title: "FounderRoutes",
-      text: "Build your business with clarity.",
+      text: "Business clarity system with tools and direction.",
+      extra: "Email: FounderRoutes@gmail.com",
       link: "https://founder-routes-app-rep-production.up.railway.app/"
     },
     spend: {
       title: "SpendScore",
-      text: "Track and improve your financial habits."
+      text: "Track spending habits and improve your financial decisions.",
+      extra: "Launching April • Email: Spendscorehelp@gmail.com"
     },
     source: {
       title: "SourceBrief",
-      text: "Smart news summaries tailored to you.",
+      text: "Smart, distilled news that cuts through noise.",
+      extra: "Join the waitlist",
       link: "https://forms.gle/diLbSQKf6aKchR3w7"
     },
     compliance: {
       title: "ComplianceIQ",
-      text: "Compliance made simple. Coming soon."
+      text: "Simple compliance tracking and insights.",
+      extra: "Currently in development"
     }
   };
 
@@ -213,6 +220,7 @@ function openModal(type) {
   content.innerHTML = `
     <h3>${item.title}</h3>
     <p>${item.text}</p>
+    <p>${item.extra}</p>
     ${item.link ? `<a href="${item.link}" target="_blank">Open →</a>` : ""}
     <br/><br/>
     <button onclick="closeModal()">Close</button>
