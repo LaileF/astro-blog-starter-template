@@ -8,25 +8,25 @@ body {
   overflow: hidden;
 }
 
-/* 🔥 BACKGROUND (FIXED — PREMIUM, NOT LOUD) */
+/* BACKGROUND (LIGHTER BLUE) */
 .bg {
   position: fixed;
   inset: 0;
   z-index: -2;
 
-  background: #0a1628; /* deep navy = premium + neutral */
+  background: linear-gradient(135deg, #0f2236 0%, #133b5c 100%);
 }
 
-/* SUBTLE CIRCUIT */
+/* CIRCUIT */
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: url('/circuit.png') center/1400px no-repeat;
-  opacity: 0.12;
+  opacity: 0.18;
 }
 
-/* NAV BAR */
+/* NAV FIX (CENTERED LOGO) */
 .nav {
   position: fixed;
   top: 0;
@@ -35,13 +35,12 @@ body {
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
+  justify-content: center;
   z-index: 10;
 }
 
 .nav img {
-  height: 32px;
+  height: 34px;
 }
 
 .nav a {
@@ -107,17 +106,17 @@ body {
 .bottom-left  { bottom: 10%; left: 10%; }
 .bottom-right { bottom: 10%; right: 10%; }
 
-/* LOGOS */
+/* LOGO FIX (FORCES VISUAL SIZE EVEN IF FILE IS BAD) */
 .card img {
   width: 64px;
   height: 64px;
   object-fit: contain;
-  margin-bottom: 12px;
+  transform: scale(1.4); /* 👈 makes small logos LOOK correct */
 }
 
 .hub-card img {
-  width: 70px;
-  margin-bottom: 10px;
+  width: 72px;
+  transform: scale(1.2);
 }
 
 /* TEXT */
