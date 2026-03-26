@@ -8,28 +8,22 @@ body {
   overflow: hidden;
 }
 
-/* BACKGROUND (FIXED — LIGHTER) */
+/* BACKGROUND (soft + not overpowering) */
 .bg {
   position: fixed;
   inset: 0;
   z-index: -2;
 
-  background:
-    radial-gradient(circle at center, rgba(200,160,60,0.08), transparent 70%),
-    linear-gradient(135deg, #152b3a 0%, #1c7c5a 100%);
+  background: linear-gradient(135deg, #1b2d3a 0%, #1f6f54 100%);
 }
 
-/* CIRCUIT (VISIBLE BUT SOFT) */
+/* CIRCUIT (simple + visible) */
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
-
-  background: url('/circuit.png') center/1500px no-repeat;
-  opacity: 0.25; /* 👈 stronger so you can SEE it */
-  filter: hue-rotate(140deg) brightness(1.1);
-
-  z-index: -1;
+  background: url('/circuit.png') center/1400px no-repeat;
+  opacity: 0.15;
 }
 
 /* SCENE */
@@ -38,7 +32,7 @@ body {
   height: 100vh;
 }
 
-/* HUB */
+/* CENTER */
 .hub {
   position: absolute;
   top: 50%;
@@ -46,65 +40,63 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* CENTER ENERGY PULSE */
-.hub-glow {
-  animation: pulse 3s infinite ease-in-out;
+.hub-card {
+  background: white;
+  padding: 36px;
+  border-radius: 18px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* LIGHT PULSE (SAFE) */
+.hub-card {
+  animation: pulse 4s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.2; transform: scale(0.9); }
-  50% { opacity: 0.45; transform: scale(1.15); }
-  100% { opacity: 0.2; transform: scale(0.9); }
-}
-
-.hub-card {
-  position: relative;
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  width: 340px;
-  text-align: center;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+  0% { box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+  50% { box-shadow: 0 25px 80px rgba(34,197,94,0.25); }
+  100% { box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
 }
 
 /* CARDS */
 .card {
   position: absolute;
-  width: 360px;
-  padding: 26px;
+  width: 340px;
+  padding: 24px;
   background: white;
-  border-radius: 18px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-  transition: all 0.25s ease;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 
-/* PUSH OUTWARD (MORE SPACE) */
-.top-left     { top: 12%; left: 12%; }
-.top-right    { top: 12%; right: 12%; }
-.bottom-left  { bottom: 12%; left: 12%; }
-.bottom-right { bottom: 12%; right: 12%; }
+/* POSITIONS */
+.top-left     { top: 10%; left: 10%; }
+.top-right    { top: 10%; right: 10%; }
+.bottom-left  { bottom: 10%; left: 10%; }
+.bottom-right { bottom: 10%; right: 10%; }
 
-/* LOGOS */
+/* LOGOS (FIXED + CONSISTENT) */
 .card img {
   width: 64px;
   height: 64px;
   object-fit: contain;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
-/* CENTER LOGO FIX */
 .hub-card img {
   width: 72px;
-  height: 72px;
+  margin-bottom: 10px;
 }
 
 /* TEXT */
 h3 { margin: 6px 0; }
-p  { font-size: 14px; color: #444; }
+p { font-size: 14px; color: #444; }
 
 /* LINKS */
 a {
@@ -113,32 +105,23 @@ a {
   text-decoration: none;
 }
 
-/* MATCH SPENDSCORE TEXT COLOR */
+/* SMALL HIGHLIGHT */
 .highlight {
   color: #2563eb;
   font-size: 12px;
 }
 
-/* ✨ SIGNAL LINES */
+/* SIMPLE SIGNAL LINES (SAFE VERSION) */
 .line {
   position: absolute;
   height: 2px;
-  background: linear-gradient(to right, transparent, #22c55e, transparent);
-  opacity: 0.4;
-  animation: flow 3s linear infinite;
+  background: rgba(34,197,94,0.4);
 }
 
-@keyframes flow {
-  0% { transform: scaleX(0.3); opacity: 0.1; }
-  50% { transform: scaleX(1); opacity: 0.5; }
-  100% { transform: scaleX(0.3); opacity: 0.1; }
-}
-
-/* POSITION LINES */
-.line-1 { top: 40%; left: 30%; width: 200px; transform-origin: left; }
-.line-2 { top: 40%; right: 30%; width: 200px; transform-origin: right; }
-.line-3 { bottom: 40%; left: 30%; width: 200px; transform-origin: left; }
-.line-4 { bottom: 40%; right: 30%; width: 200px; transform-origin: right; }
+.line-1 { top: 35%; left: 30%; width: 160px; }
+.line-2 { top: 35%; right: 30%; width: 160px; }
+.line-3 { bottom: 35%; left: 30%; width: 160px; }
+.line-4 { bottom: 35%; right: 30%; width: 160px; }
 
 </style>
 
@@ -146,7 +129,7 @@ a {
 
 <div id="scene">
 
-  <!-- SIGNAL LINES -->
+  <!-- LINES -->
   <div class="line line-1"></div>
   <div class="line line-2"></div>
   <div class="line line-3"></div>
@@ -154,13 +137,12 @@ a {
 
   <!-- CENTER -->
   <div class="hub">
-    <div class="hub-glow"></div>
     <div class="hub-card">
       <img src="/logo.png" />
       <h3>SignalRoutes</h3>
       <p>Clear signals. Better decisions.</p>
       <p style="font-size:13px;">
-        Apps designed to cut through noise across money, business, news, and compliance—so you always know what matters and clarity on what to do next.
+        Apps designed to cut through noise across money, business, news, and compliance—so you always know what matters and what to do next.
       </p>
     </div>
   </div>
@@ -170,7 +152,7 @@ a {
     <img src="/founderroutes.png" />
     <h3>FounderRoutes</h3>
     <p>
-      Build Your Business with direction—Not guesswork, custom downloads and an assitant that grows with you. Know what to do now—and what not to do.
+      Build your business with direction—not guesswork. Know what to do now—and what not to do.
     </p>
     <a href="https://founder-routes-app-rep-production.up.railway.app/" target="_blank">
       Visit →
@@ -178,14 +160,14 @@ a {
   </div>
 
   <!-- SPENDSCORE -->
-<div class="card top-right">
-  <img src="/spendscore.png" />
-  <h3>SpendScore</h3>
-  <p>
-    Understand your money in real time, track your score. Build better habits without complexity.
-  </p>
-  <p class="highlight">Launching April 1</p>
-</div>
+  <div class="card top-right">
+    <img src="/spendscore.png" />
+    <h3>SpendScore</h3>
+    <p>
+      Understand your money in real time and track your score. Build better habits without complexity.
+    </p>
+    <p class="highlight">Launching April 1</p>
+  </div>
 
   <!-- SOURCEBRIEF -->
   <div class="card bottom-left">
@@ -201,7 +183,7 @@ a {
 
   <!-- COMPLIANCE -->
   <div class="card bottom-right">
-    <img src="/compliance.png" style="transform: scale(2);" />
+    <img src="/compliance.png" />
     <h3>ComplianceIQ</h3>
     <p>
       Stay ahead of compliance without drowning in updates or spreadsheets.
