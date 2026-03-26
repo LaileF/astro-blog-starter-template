@@ -5,7 +5,6 @@
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  overflow: hidden;
 }
 
 /* 🔵 BACKGROUND */
@@ -16,23 +15,14 @@ body {
   background: linear-gradient(135deg, #1e3a5f 0%, #3a6b8a 100%);
 }
 
-/* 🟢 CIRCUIT — BRIGHT + CLEAR */
+/* 🟢 CIRCUIT */
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: url('/circuit.png') center/1400px no-repeat;
   opacity: 0.35;
-  filter: brightness(1.5) saturate(1.5);
-}
-
-/* GREEN OVERLAY */
-.bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(34, 197, 94, 0.35);
-  mix-blend-mode: overlay;
+  filter: hue-rotate(120deg) brightness(1.2) saturate(2);
 }
 
 /* SCENE */
@@ -41,7 +31,7 @@ body {
   height: 100vh;
 }
 
-/* CENTER HUB */
+/* HUB */
 .hub {
   position: absolute;
   top: 50%;
@@ -88,7 +78,7 @@ body {
 .bottom-left  { bottom: 10%; left: 8%; }
 .bottom-right { bottom: 10%; right: 8%; }
 
-/* LOGOS BIGGER */
+/* LOGOS */
 .logo-wrap {
   display: flex;
   justify-content: center;
@@ -99,6 +89,11 @@ body {
 
 .logo-wrap img {
   max-height: 100px;
+  transition: 0.2s ease;
+}
+
+.card:hover .logo-wrap img {
+  transform: scale(1.08);
 }
 
 /* TEXT */
@@ -115,6 +110,7 @@ p { font-size: 14px; color: #444; }
   box-shadow: 0 25px 70px rgba(0,0,0,0.35);
   display: none;
   z-index: 30;
+  transition: all 0.2s ease;
 }
 
 .modal a {
@@ -129,6 +125,49 @@ p { font-size: 14px; color: #444; }
   cursor: pointer;
   color: #888;
 }
+
+/* 📱 MOBILE */
+@media (max-width: 900px) {
+
+  #scene {
+    height: auto;
+    padding: 20px;
+  }
+
+  .hub {
+    position: relative;
+    transform: none;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
+
+  .hub-card,
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 20px auto;
+  }
+
+  .top-left,
+  .top-right,
+  .bottom-left,
+  .bottom-right {
+    all: unset;
+  }
+
+  .modal {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 </style>
 
 <div class="bg"></div>
@@ -141,9 +180,10 @@ p { font-size: 14px; color: #444; }
       <div class="logo-wrap"><img src="/logo.png" /></div>
       <h3>SignalRoutes</h3>
       <p>Clear signals. Better decisions.</p>
-      <p style="font-size:13px;">
+      <p style="font-size:14px; font-weight:500;">
         A system of tools designed to cut through noise across money, business, news, and compliance.
       </p>
+      <p style="font-size:12px; color:#666;">Click any product to explore →</p>
     </div>
   </div>
 
@@ -184,38 +224,35 @@ window.openModal = function(e,type) {
     signal: {
       title: "SignalRoutes",
       text: "SignalRoutes is a connected system of focused tools designed to cut through noise across business, money, news, and compliance.",
-      extra: "Instead of juggling disconnected tools, everything is built to work together—so you always know what matters and what to do next.",
-      cta: "Explore the ecosystem"
+      extra: "Each product solves a specific problem—together they create clarity across your entire decision system.",
+      cta: "System overview"
     },
-
     founder: {
       title: "FounderRoutes",
-      text: "A guided system that tells you exactly what to do next in your business—eliminating guesswork and wasted time.",
-      extra: "Best for: new founders, side hustlers, and operators who want clear direction instead of overwhelm.",
+      text: "A guided system that tells you exactly what to do next in your business—eliminating guesswork.",
+      extra: "Best for: founders and operators who want clarity and direction.",
       link: "https://founder-routes-app-rep-production.up.railway.app/",
       cta: "Explore FounderRoutes →"
     },
-
     spend: {
       title: "SpendScore",
       text: "A real-time financial awareness tool that helps you understand and improve your money habits.",
-      extra: "See where your money is going, track your behavior, and build better habits without complexity.",
-      cta: "Launching April • Spendscorehelp@gmail.com"
+      extra: "Track behavior and build better financial decisions.",
+      link: "mailto:Spendscorehelp@gmail.com",
+      cta: "Get early access →"
     },
-
     source: {
       title: "SourceBrief",
-      text: "News distilled down to what actually matters—filtered, summarized, and stripped of noise.",
-      extra: "Built for people who want to stay informed without wasting time or sorting through bias.",
+      text: "News distilled to what actually matters—filtered, summarized, and stripped of noise.",
+      extra: "Stay informed without wasting time.",
       link: "https://forms.gle/diLbSQKf6aKchR3w7",
-      cta: "Join the waitlist →"
+      cta: "Join waitlist →"
     },
-
     compliance: {
       title: "ComplianceIQ",
-      text: "A simplified approach to compliance that removes the overwhelm of constant updates and regulations.",
-      extra: "Designed for business owners who need clarity without spreadsheets and chaos.",
-      cta: "Currently in development"
+      text: "A simplified approach to compliance without spreadsheets or overwhelm.",
+      extra: "Built for business owners who need clarity.",
+      cta: "In development"
     }
   };
 
@@ -224,22 +261,26 @@ window.openModal = function(e,type) {
   modal.innerHTML = `
     <h3>${item.title}</h3>
     <p>${item.text}</p>
-    <p style="margin-top:8px;">${item.extra}</p>
-    ${item.link ? `<a href="${item.link}" target="_blank">${item.cta}</a>` : `<p style="color:#2563eb;margin-top:10px;">${item.cta}</p>`}
+    <p>${item.extra}</p>
+    ${item.link ? `<a href="${item.link}" target="_blank">${item.cta}</a>` : `<p style="color:#2563eb;">${item.cta}</p>`}
     <div class="close" onclick="closeModal()">Close</div>
   `;
 
   modal.style.display = 'block';
 
+  /* MOBILE */
+  if (window.innerWidth < 900) {
+    modal.style.left = "0px";
+    modal.style.top = "0px";
+    return;
+  }
+
   const rect = e.currentTarget.getBoundingClientRect();
 
-  /* 👇 SMART POSITIONING */
   if (rect.left > window.innerWidth / 2) {
-    // RIGHT SIDE → open LEFT
-    modal.style.left = (rect.left - 380 - 15) + "px";
+    modal.style.left = (rect.left - 380 - 25) + "px";
   } else {
-    // LEFT SIDE → open RIGHT
-    modal.style.left = (rect.right + 15) + "px";
+    modal.style.left = (rect.right + 25) + "px";
   }
 
   modal.style.top = rect.top + "px";
