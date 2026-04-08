@@ -234,7 +234,7 @@ section { padding: 100px 48px; }
 
 /* ── ABOUT ── */
 .about {
-  background: var(--ink);
+  background: #1a1a1a;
   color: var(--paper);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -243,21 +243,21 @@ section { padding: 100px 48px; }
 }
 .about .section-label { color: var(--signal); }
 .about .section-title { color: var(--paper); }
-.about-body { font-size: 1.05rem; line-height: 1.75; color: rgba(245,242,235,0.75); font-weight: 300; }
+.about-body { font-size: 1.05rem; line-height: 1.75; color: rgba(245,242,235,0.85); font-weight: 300; }
 .about-body p + p { margin-top: 20px; }
 .about-body strong { color: var(--paper); font-weight: 500; }
 .about-right { display: flex; flex-direction: column; gap: 24px; }
 .founder-card {
-  border: 1px solid rgba(245,242,235,0.15);
+  border: 1px solid rgba(245,242,235,0.25);
   padding: 32px;
   border-radius: 2px;
-  background: rgba(245,242,235,0.04);
+  background: rgba(245,242,235,0.08);
 }
 .founder-name { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--paper); margin-bottom: 4px; }
-.founder-title { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; font-family: 'DM Mono', monospace; }
-.founder-bio { font-size: 0.9rem; color: rgba(245,242,235,0.65); line-height: 1.6; }
+.founder-title { font-size: 0.8rem; color: rgba(245,242,235,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; font-family: 'DM Mono', monospace; }
+.founder-bio { font-size: 0.9rem; color: rgba(245,242,235,0.8); line-height: 1.6; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.tag { background: rgba(200,68,26,0.2); color: #e8856a; padding: 4px 12px; border-radius: 2px; font-size: 0.75rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+.tag { background: rgba(200,68,26,0.25); color: #f0a080; padding: 4px 12px; border-radius: 2px; font-size: 0.75rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
 
 /* ── APPS ── */
 .apps-section { background: var(--paper); }
@@ -343,6 +343,24 @@ section { padding: 100px 48px; }
 
 /* ── ROADMAP ── */
 .roadmap { background: var(--paper); }
+.roadmap-paths {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+.path-card {
+  padding: 28px 32px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+}
+.path-organic { background: #f0f7f3; border-color: #b8d9c8; }
+.path-accelerated { background: #fdf0eb; border-color: #f0c4b0; }
+.path-label { font-weight: 600; font-size: 0.95rem; color: var(--ink); margin-bottom: 8px; }
+.path-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.path-divider { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--border); text-align: center; }
 .roadmap-timeline { margin-top: 60px; position: relative; }
 .roadmap-timeline::before {
   content: '';
@@ -383,21 +401,21 @@ section { padding: 100px 48px; }
 .roadmap-revenue { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--signal); margin-top: 4px; }
 
 /* ── INVEST ── */
-.invest { background: var(--ink); color: var(--paper); }
+.invest { background: #1a1a1a; color: var(--paper); }
 .invest .section-label { color: var(--signal); }
 .invest .section-title { color: var(--paper); }
 .invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; align-items: start; }
-.invest-left p { font-size: 1rem; color: rgba(245,242,235,0.7); line-height: 1.75; font-weight: 300; margin-bottom: 20px; }
+.invest-left p { font-size: 1rem; color: rgba(245,242,235,0.85); line-height: 1.75; font-weight: 300; margin-bottom: 20px; }
 .invest-left strong { color: var(--paper); font-weight: 500; }
 .needs-list { list-style: none; margin-top: 32px; }
-.needs-list li { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(245,242,235,0.1); }
+.needs-list li { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(245,242,235,0.15); }
 .needs-list li:last-child { border-bottom: none; }
 .need-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
 .need-title { font-weight: 500; color: var(--paper); margin-bottom: 4px; font-size: 0.95rem; }
-.need-desc { font-size: 0.83rem; color: rgba(245,242,235,0.55); line-height: 1.55; }
-.contact-card { border: 1px solid rgba(245,242,235,0.15); padding: 40px; background: rgba(245,242,235,0.04); }
+.need-desc { font-size: 0.83rem; color: rgba(245,242,235,0.7); line-height: 1.55; }
+.contact-card { border: 1px solid rgba(245,242,235,0.25); padding: 40px; background: rgba(245,242,235,0.07); }
 .contact-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--paper); margin-bottom: 8px; }
-.contact-card p { font-size: 0.88rem; color: rgba(245,242,235,0.55); margin-bottom: 32px; line-height: 1.6; }
+.contact-card p { font-size: 0.88rem; color: rgba(245,242,235,0.7); margin-bottom: 32px; line-height: 1.6; }
 .contact-options { display: flex; flex-direction: column; gap: 12px; }
 .contact-btn {
   display: flex;
@@ -405,16 +423,16 @@ section { padding: 100px 48px; }
   gap: 14px;
   padding: 16px 20px;
   text-decoration: none;
-  border: 1px solid rgba(245,242,235,0.15);
+  border: 1px solid rgba(245,242,235,0.2);
   border-radius: 2px;
   transition: all 0.2s;
-  background: rgba(245,242,235,0.03);
+  background: rgba(245,242,235,0.05);
 }
-.contact-btn:hover { background: rgba(200,68,26,0.15); border-color: var(--signal); }
+.contact-btn:hover { background: rgba(200,68,26,0.2); border-color: var(--signal); }
 .contact-btn-icon { font-size: 1.1rem; flex-shrink: 0; }
 .contact-btn-text strong { display: block; font-size: 0.88rem; color: var(--paper); font-weight: 500; }
-.contact-btn-text span { font-size: 0.78rem; color: rgba(245,242,235,0.45); font-family: 'DM Mono', monospace; }
-.contact-btn.highlight { background: rgba(200,68,26,0.08); border-color: var(--signal); }
+.contact-btn-text span { font-size: 0.78rem; color: rgba(245,242,235,0.6); font-family: 'DM Mono', monospace; }
+.contact-btn.highlight { background: rgba(200,68,26,0.15); border-color: var(--signal); }
 
 /* ── FOOTER ── */
 footer {
@@ -451,7 +469,8 @@ footer {
   .app-card.outlier { grid-column: span 1; grid-template-columns: 1fr; }
   .traction-grid { grid-template-columns: 1fr; gap: 16px; }
   .invest-grid { grid-template-columns: 1fr; gap: 40px; }
-  .roadmap-timeline::before { left: 80px; }
+  .roadmap-paths { grid-template-columns: 1fr; }
+  .path-divider { display: none; }
   .roadmap-item { grid-template-columns: 80px 1fr; }
   footer { flex-direction: column; gap: 12px; text-align: center; }
 }
@@ -474,7 +493,7 @@ footer {
   </nav>
 
   <div class="hero-body">
-    <div class="hero-eyebrow">SignalRoutes · Ellensburg, WA · Est. 2025</div>
+    <div class="hero-eyebrow">SignalRoutes · Pacific Northwest · Est. 2025</div>
     <h1 class="hero-headline">Tools that cut<br>through the <em>noise.</em></h1>
     <p class="hero-sub">A suite of practical software products helping founders, individuals, and organizations make clearer decisions — about money, business, news, and compliance.</p>
     <div class="hero-actions">
@@ -511,17 +530,17 @@ footer {
     <div class="about-body reveal">
       <p>SignalRoutes was born out of a simple frustration: <strong>too much noise, not enough signal.</strong> Starting and running a business in Washington meant navigating a maze of regulations, financial tools, and information sources — none of them designed to work together.</p>
       <p>So we built the tools we wished existed. Each product in the SignalRoutes portfolio solves a real, specific problem — and together they form a system for <strong>clearer thinking and better decisions</strong> across every stage of business and personal growth.</p>
-      <p>Bootstrapped, profitable-path focused, and building in public from Ellensburg, WA.</p>
+      <p>Bootstrapped, profitable-path focused, and building in public from the Pacific Northwest.</p>
     </div>
   </div>
   <div class="about-right reveal">
     <div class="founder-card">
       <div class="founder-name">Laile Fletcher</div>
       <div class="founder-title">Founder · Developer · Operator</div>
-      <div class="founder-bio">Solo founder building a portfolio of practical SaaS tools from Ellensburg, WA. Background spanning fintech compliance, small business operations, and software development. Every product is built, tested, and shipped by someone who uses it.</div>
+      <div class="founder-bio">Solo founder building a portfolio of practical SaaS tools from the Pacific Northwest. Background spanning fintech compliance, small business operations, and software development. Every product is built, tested, and shipped by someone who uses it.</div>
       <div class="tag-row">
         <span class="tag">Bootstrapped</span>
-        <span class="tag">Ellensburg WA</span>
+        <span class="tag">Pacific NW</span>
         <span class="tag">SaaS</span>
         <span class="tag">Solo Founder</span>
       </div>
@@ -647,81 +666,85 @@ footer {
 
 <!-- ── ROADMAP ── -->
 <section class="roadmap" id="roadmap">
-  <div class="section-label reveal">5-Year Roadmap</div>
-  <h2 class="section-title reveal">The path to <em style="color:var(--signal);">$200K.</em></h2>
-  <p style="color:var(--muted);font-size:0.95rem;margin-top:12px;font-weight:300;" class="reveal">Year 1 → $20K &nbsp;·&nbsp; Year 2 → $60K &nbsp;·&nbsp; Year 3 → $100K &nbsp;·&nbsp; Year 4 → $150K &nbsp;·&nbsp; Year 5 → $200K gross · $140K in pocket</p>
+  <div class="section-label reveal">Vision &amp; Roadmap</div>
+  <h2 class="section-title reveal">Built to scale.<br><em style="color:var(--signal);">No ceiling.</em></h2>
+  <p style="color:var(--muted);font-size:0.95rem;margin-top:12px;font-weight:300;max-width:700px;" class="reveal">SignalRoutes is designed from the ground up to grow — organically or with the right partners. Here's where we're going, and what the right investment unlocks.</p>
+
+  <!-- TWO PATH HEADER -->
+  <div class="roadmap-paths reveal">
+    <div class="path-card path-organic">
+      <div class="path-label">🌱 Organic Path</div>
+      <div class="path-desc">Bootstrapped growth through content, community, and direct outreach. Profitable from early stages. Steady, sustainable expansion across all 50 states.</div>
+    </div>
+    <div class="path-divider">+</div>
+    <div class="path-card path-accelerated">
+      <div class="path-label">🚀 With Investment</div>
+      <div class="path-desc">Dev partner + media partner + state/gov channel access unlocks national scale in months, not years. ComplianceIQ alone represents an enterprise-level opportunity.</div>
+    </div>
+  </div>
 
   <div class="roadmap-timeline reveal">
 
     <div class="roadmap-item done">
       <div class="roadmap-date">Now<br>Apr 2026</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">Foundation locked in — 3 products live or launching</div>
-        <div class="roadmap-detail">10/12 SpendScore beta testers complete. SourceBrief live globally. FounderRoutes beta open in WA, CA, NY with 5 demos done. ComplianceIQ in advanced demo stage.</div>
-        <div class="roadmap-revenue">Year 1 begins · Goal: $20K gross</div>
+        <div class="roadmap-title">Foundation complete — portfolio live across 3 products</div>
+        <div class="roadmap-detail">SpendScore beta closing. SourceBrief live globally. FounderRoutes beta open in WA, CA, NY — 5 demos done, 12-module curriculum complete. ComplianceIQ in advanced demo stage.</div>
+        <div class="roadmap-revenue">✅ Organic &amp; Accelerated paths both begin here</div>
       </div>
     </div>
 
     <div class="roadmap-item active">
-      <div class="roadmap-date">May<br>2026</div>
+      <div class="roadmap-date">Q2<br>2026</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">SpendScore hits Google Play · FounderRoutes fully public</div>
-        <div class="roadmap-detail">First public app store listing — US, EU, Canada. FounderRoutes open to all founders in WA, CA, NY. SourceBrief target: 15 paying subscribers. AdMob revenue begins.</div>
-        <div class="roadmap-revenue">Target: $160–200/mo MRR</div>
+        <div class="roadmap-title">SpendScore public · FounderRoutes open · First revenue</div>
+        <div class="roadmap-detail">Google Play launch in US, EU, Canada. FounderRoutes fully public in 3 states. SourceBrief growing globally. AdMob revenue stream begins. First paying FounderRoutes subscribers.</div>
+        <div class="roadmap-revenue">🌱 Organic: First MRR &nbsp;|&nbsp; 🚀 Accelerated: Paid acquisition begins immediately</div>
       </div>
     </div>
 
     <div class="roadmap-item">
-      <div class="roadmap-date">Jun–Jul<br>2026</div>
+      <div class="roadmap-date">Q3–Q4<br>2026</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">Break-even · FounderRoutes 10 core subscribers</div>
-        <div class="roadmap-detail">Both consumer apps cover their own costs. FounderRoutes 10 core subs = $400/mo. Portfolio MRR covers all operating expenses. First real profit.</div>
-        <div class="roadmap-revenue">Target: $500+/mo MRR</div>
+        <div class="roadmap-title">FounderRoutes national expansion begins · ComplianceIQ first B2B deal</div>
+        <div class="roadmap-detail">FounderRoutes state-by-state rollout underway. ComplianceIQ first revenue or signed partnership. Investment conversations fully supported by live multi-product revenue.</div>
+        <div class="roadmap-revenue">🌱 Organic: Steady state growth &nbsp;|&nbsp; 🚀 Accelerated: Dev hire unlocks 10+ states simultaneously</div>
       </div>
     </div>
 
     <div class="roadmap-item">
-      <div class="roadmap-date">Oct<br>2026</div>
+      <div class="roadmap-date">2027</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">$1,000 MRR · ComplianceIQ first B2B customer</div>
-        <div class="roadmap-detail">Portfolio at $12K ARR run rate. ComplianceIQ first revenue or signed partnership. Investment conversation supported by live, multi-product revenue. Dev partner search begins.</div>
-        <div class="roadmap-revenue">$1,000 MRR · $12K ARR · Year 1 on track</div>
+        <div class="roadmap-title">FounderRoutes all 50 states · Government &amp; institutional channels</div>
+        <div class="roadmap-detail">Full national coverage. State economic development offices, SBDCs, chambers, and universities become distribution channels — each one a multiplier on subscriber growth. Media partner amplifies every launch.</div>
+        <div class="roadmap-revenue">🌱 Organic: 18–24 months &nbsp;|&nbsp; 🚀 Accelerated: 6–9 months with dev + media partner</div>
       </div>
     </div>
 
     <div class="roadmap-item">
-      <div class="roadmap-date">Year 2<br>2027</div>
+      <div class="roadmap-date">2027–28</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">$5,000 MRR · FounderRoutes all 50 states · ComplianceIQ deal</div>
-        <div class="roadmap-detail">National FounderRoutes expansion complete — every state covered. $60K ARR run rate. ComplianceIQ buyout, investment, or enterprise licensing — the portfolio's single biggest upside event. Media/growth partner engaged.</div>
-        <div class="roadmap-revenue">$5,000 MRR · $60K ARR · $42K take-home</div>
+        <div class="roadmap-title">ComplianceIQ — the portfolio's biggest upside event</div>
+        <div class="roadmap-detail">ComplianceIQ pivots from demo to full B2B platform. Enterprise licensing to mid-market companies, law firms, HR consultants, and state agencies. A single channel partnership or licensing deal changes the portfolio's trajectory entirely.</div>
+        <div class="roadmap-revenue">🚀 Investment opportunity: Build-out, BD, and enterprise sales — highest ROI product in the portfolio</div>
       </div>
     </div>
 
     <div class="roadmap-item">
-      <div class="roadmap-date">Year 3<br>2028</div>
+      <div class="roadmap-date">2028</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">$8,300 MRR · SpendScore iOS launch · SourceBrief premium tiers</div>
-        <div class="roadmap-detail">SpendScore expands to Apple App Store. SourceBrief adds team/corporate plans. FounderRoutes Pro tier scaling. Portfolio generating consistent $100K annual gross. Systems in place, growth is compounding.</div>
-        <div class="roadmap-revenue">$8,300 MRR · $100K ARR · $70K take-home</div>
+        <div class="roadmap-title">SpendScore iOS · SourceBrief corporate tiers · FounderRoutes Pro at scale</div>
+        <div class="roadmap-detail">Apple App Store launch for SpendScore. SourceBrief team and corporate plans. FounderRoutes Pro tier — deeper curriculum, live Q&amp;A, cohort learning — commands premium pricing. Multiple high-margin revenue streams compounding.</div>
+        <div class="roadmap-revenue">🌱 Organic: Compounding MRR across all products &nbsp;|&nbsp; 🚀 Accelerated: Premium tiers + enterprise = step-change in ARR</div>
       </div>
     </div>
 
     <div class="roadmap-item">
-      <div class="roadmap-date">Year 4<br>2029</div>
+      <div class="roadmap-date">2029–30</div>
       <div class="roadmap-content">
-        <div class="roadmap-title">$12,500 MRR · Portfolio fully systematized</div>
-        <div class="roadmap-detail">All four products generating consistent revenue. FounderRoutes at scale across all 50 states. Paid acquisition running profitably. First hire or key contractor. Business largely runs without daily intervention.</div>
-        <div class="roadmap-revenue">$12,500 MRR · $150K ARR · $105K take-home</div>
-      </div>
-    </div>
-
-    <div class="roadmap-item">
-      <div class="roadmap-date">Year 5<br>2030 🎯</div>
-      <div class="roadmap-content">
-        <div class="roadmap-title">$200K gross · Semi-passive income · Travel mode 🌍</div>
-        <div class="roadmap-detail">The goal achieved. $16,600+ MRR across the portfolio. $140K take-home after all fees, store cuts, and taxes. Location-independent. Built from Ellensburg, WA — runs from anywhere in the world.</div>
-        <div class="roadmap-revenue" style="color:var(--green);font-weight:600;">$200K GROSS · $140K IN POCKET · FREEDOM 🌍</div>
+        <div class="roadmap-title">Portfolio at scale · Semi-passive · Location-independent 🌍</div>
+        <div class="roadmap-detail">Four products operating at national or global scale. Systems, team, and distribution in place. The founder operates strategically — not operationally. Built from the Pacific Northwest. Runs from anywhere in the world.</div>
+        <div class="roadmap-revenue" style="color:var(--green);font-weight:600;">🌱 Sustainable passive income &nbsp;|&nbsp; 🚀 With investment: Portfolio valuation conversation 🎯</div>
       </div>
     </div>
 
@@ -819,7 +842,7 @@ footer {
   <div class="footer-logo">
     <img src="/logo.png" alt="" class="nav-logo-img">Signal<span>Routes</span>
   </div>
-  <div class="footer-note">© 2026 SignalRoutes · Laile Fletcher · Ellensburg, WA · Built by a founder, for founders.</div>
+  <div class="footer-note">© 2026 SignalRoutes · Laile Fletcher · Pacific Northwest · Built by a founder, for founders.</div>
 </footer>
 
 <script>
