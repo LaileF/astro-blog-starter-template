@@ -1,291 +1,845 @@
 ---
+// SignalRoutes — index.astro
+// Drop this file into src/pages/index.astro in your GitHub repo
 ---
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SignalRoutes — Clear Signals. Better Decisions.</title>
+<meta name="description" content="A suite of practical software tools helping founders, individuals, and organizations make clearer decisions — about money, business, news, and compliance.">
+<meta property="og:title" content="SignalRoutes — Clear Signals. Better Decisions.">
+<meta property="og:description" content="FounderRoutes · SpendScore · SourceBrief · ComplianceIQ — built by a founder, for founders.">
+<meta property="og:url" content="https://signalroutes.work">
+<meta property="og:image" content="/logo.png">
+<link rel="icon" href="/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ── RESET & TOKENS ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink: #0e0e0e;
+  --paper: #f5f2eb;
+  --warm: #e8e2d5;
+  --signal: #c8441a;
+  --muted: #7a7468;
+  --border: #d4cfc5;
+  --green: #2a6e4a;
+  --amber: #b87414;
+  --blue: #1a4a7a;
+}
+
 body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-/* BACKGROUND */
-.bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background: linear-gradient(135deg, #1e3a5f 0%, #3a6b8a 100%);
-}
+/* ── SHARED IMAGE HELPERS ── */
+.app-logo    { width: 56px; height: 56px; object-fit: contain; margin-bottom: 16px; display: block; border-radius: 10px; }
+.app-logo-sm { width: 32px; height: 32px; object-fit: contain; border-radius: 6px; }
+.nav-logo-img { height: 28px; object-fit: contain; vertical-align: middle; margin-right: 8px; }
 
-/* CIRCUIT (USE YOUR GREEN PNG — NO FILTERS) */
-.bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('/circuit.png') center/1400px no-repeat;
-  opacity: 0.25;
-}
-
-/* SCENE */
-#scene {
+/* ── NAV / HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   position: relative;
-  height: 100vh;
+  overflow: hidden;
 }
-
-/* CENTER */
-.hub {
+.hero::before {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(200,68,26,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 10% 80%, rgba(42,110,74,0.06) 0%, transparent 50%);
+  pointer-events: none;
 }
-
-.hub-card {
-  background: white;
-  padding: 40px;
-  border-radius: 18px;
-  width: 360px;
-  text-align: center;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
-  cursor: pointer;
-}
-
-/* CARDS */
-.card {
+.hero::after {
+  content: '';
   position: absolute;
-  width: 380px;
-  padding: 28px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-  cursor: pointer;
-  transition: 0.2s ease;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-}
-
-/* POSITIONS */
-.top-left     { top: 10%; left: 8%; }
-.top-right    { top: 10%; right: 8%; }
-.bottom-left  { bottom: 10%; left: 8%; }
-.bottom-right { bottom: 10%; right: 8%; }
-
-/* LOGOS */
-.logo-wrap {
+nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 100px;
-  margin-bottom: 12px;
+  padding: 28px 48px;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: rgba(245,242,235,0.85);
+  backdrop-filter: blur(8px);
 }
-
-.logo-wrap img {
-  max-height: 100px;
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
 }
-
-/* TEXT */
-h3 { margin: 6px 0; }
-p { font-size: 14px; color: #444; }
-
-/* MODAL */
-.modal {
-  position: fixed;
-  width: 360px;
-  background: white;
-  padding: 24px;
-  border-radius: 14px;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.35);
-  display: none;
-  z-index: 30;
-}
-
-.modal a {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 16px;
-  background: #2563eb;
-  color: white;
-  border-radius: 6px;
+.nav-logo span { color: var(--signal); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
   text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  padding: 8px 20px;
+  border-radius: 2px;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--signal) !important; }
+
+.hero-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 48px 60px;
+  position: relative;
+  z-index: 5;
+  max-width: 900px;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s forwards;
+}
+.hero-headline {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero-headline em { font-style: italic; color: var(--signal); }
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.65s forwards;
+}
+.btn-primary {
+  background: var(--signal);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  border: 2px solid var(--signal);
+}
+.btn-primary:hover { background: transparent; color: var(--signal); }
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  border: 2px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--ink); }
+
+.hero-stats {
+  display: flex;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 5;
+  background: rgba(245,242,235,0.7);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  animation: fadeUp 0.7s 0.8s forwards;
+}
+.stat-item { flex: 1; padding: 24px 48px; border-right: 1px solid var(--border); }
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--ink);
+  display: block;
+  letter-spacing: -0.03em;
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
 }
 
-.close {
-  margin-top: 12px;
-  font-size: 12px;
-  cursor: pointer;
-  color: #888;
+/* ── SECTIONS ── */
+section { padding: 100px 48px; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 20px;
 }
 
-/* MOBILE */
+/* ── ABOUT ── */
+.about {
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about .section-label { color: var(--signal); }
+.about .section-title { color: var(--paper); }
+.about-body { font-size: 1.05rem; line-height: 1.75; color: rgba(245,242,235,0.75); font-weight: 300; }
+.about-body p + p { margin-top: 20px; }
+.about-body strong { color: var(--paper); font-weight: 500; }
+.about-right { display: flex; flex-direction: column; gap: 24px; }
+.founder-card {
+  border: 1px solid rgba(245,242,235,0.15);
+  padding: 32px;
+  border-radius: 2px;
+  background: rgba(245,242,235,0.04);
+}
+.founder-name { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--paper); margin-bottom: 4px; }
+.founder-title { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; font-family: 'DM Mono', monospace; }
+.founder-bio { font-size: 0.9rem; color: rgba(245,242,235,0.65); line-height: 1.6; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tag { background: rgba(200,68,26,0.2); color: #e8856a; padding: 4px 12px; border-radius: 2px; font-size: 0.75rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+
+/* ── APPS ── */
+.apps-section { background: var(--paper); }
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+  border: 1px solid var(--border);
+}
+.app-card {
+  background: var(--paper);
+  padding: 48px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.app-card:hover { background: var(--warm); }
+.app-card:nth-child(2n) { border-right: none; }
+.app-card:nth-child(3), .app-card:nth-child(4) { border-bottom: none; }
+.app-card.outlier {
+  grid-column: span 2;
+  border-bottom: none;
+  border-right: none;
+  background: var(--warm);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+.app-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 20px; }
+.app-name { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 8px; }
+.app-tagline { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+.app-desc { font-size: 0.88rem; color: var(--ink); line-height: 1.65; margin-bottom: 24px; font-weight: 300; }
+.app-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.status-live   { background: #d4eade; color: var(--green); }
+.status-beta   { background: #fef3d4; color: var(--amber); }
+.status-pipeline { background: #dce8f5; color: var(--blue); }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.price-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+.app-link {
+  font-size: 0.8rem;
+  color: var(--signal);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+.app-link:hover { opacity: 0.7; }
+.outlier-badge { text-align: center; white-space: nowrap; }
+.outlier-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+.outlier-value { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--signal); display: block; }
+
+/* ── TRACTION ── */
+.traction { background: var(--warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.traction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+.traction-item { padding: 32px; background: var(--paper); border: 1px solid var(--border); border-radius: 2px; }
+.traction-num { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--signal); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+.traction-label { font-size: 0.85rem; color: var(--ink); font-weight: 500; margin-bottom: 6px; }
+.traction-note { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* ── ROADMAP ── */
+.roadmap { background: var(--paper); }
+.roadmap-timeline { margin-top: 60px; position: relative; }
+.roadmap-timeline::before {
+  content: '';
+  position: absolute;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.roadmap-item { display: grid; grid-template-columns: 120px 1fr; position: relative; }
+.roadmap-item + .roadmap-item { border-top: 1px solid var(--border); }
+.roadmap-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  padding: 28px 24px 28px 0;
+  text-align: right;
+  line-height: 1.4;
+}
+.roadmap-content { padding: 28px 0 28px 40px; position: relative; }
+.roadmap-content::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 36px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid var(--paper);
+}
+.roadmap-item.active .roadmap-content::before { background: var(--signal); }
+.roadmap-item.done   .roadmap-content::before { background: var(--green); }
+.roadmap-title { font-weight: 600; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; }
+.roadmap-detail { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+.roadmap-revenue { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--signal); margin-top: 4px; }
+
+/* ── INVEST ── */
+.invest { background: var(--ink); color: var(--paper); }
+.invest .section-label { color: var(--signal); }
+.invest .section-title { color: var(--paper); }
+.invest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; align-items: start; }
+.invest-left p { font-size: 1rem; color: rgba(245,242,235,0.7); line-height: 1.75; font-weight: 300; margin-bottom: 20px; }
+.invest-left strong { color: var(--paper); font-weight: 500; }
+.needs-list { list-style: none; margin-top: 32px; }
+.needs-list li { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(245,242,235,0.1); }
+.needs-list li:last-child { border-bottom: none; }
+.need-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.need-title { font-weight: 500; color: var(--paper); margin-bottom: 4px; font-size: 0.95rem; }
+.need-desc { font-size: 0.83rem; color: rgba(245,242,235,0.55); line-height: 1.55; }
+.contact-card { border: 1px solid rgba(245,242,235,0.15); padding: 40px; background: rgba(245,242,235,0.04); }
+.contact-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--paper); margin-bottom: 8px; }
+.contact-card p { font-size: 0.88rem; color: rgba(245,242,235,0.55); margin-bottom: 32px; line-height: 1.6; }
+.contact-options { display: flex; flex-direction: column; gap: 12px; }
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  text-decoration: none;
+  border: 1px solid rgba(245,242,235,0.15);
+  border-radius: 2px;
+  transition: all 0.2s;
+  background: rgba(245,242,235,0.03);
+}
+.contact-btn:hover { background: rgba(200,68,26,0.15); border-color: var(--signal); }
+.contact-btn-icon { font-size: 1.1rem; flex-shrink: 0; }
+.contact-btn-text strong { display: block; font-size: 0.88rem; color: var(--paper); font-weight: 500; }
+.contact-btn-text span { font-size: 0.78rem; color: rgba(245,242,235,0.45); font-family: 'DM Mono', monospace; }
+.contact-btn.highlight { background: rgba(200,68,26,0.08); border-color: var(--signal); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--muted); }
+.footer-logo span { color: var(--signal); }
+.footer-note { font-size: 0.78rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-
-  #scene {
-    height: auto;
-    padding: 20px;
-  }
-
-  .hub {
-    position: relative;
-    transform: none;
-    margin-bottom: 20px;
-  }
-
-  .hub-card,
-  .card {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto 20px auto;
-  }
-
-  .top-left,
-  .top-right,
-  .bottom-left,
-  .bottom-right {
-    all: unset;
-  }
-
-  .modal {
-    left: 0 !important;
-    top: 0 !important;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  section { padding: 60px 24px; }
+  .hero-body { padding: 60px 24px 40px; }
+  .hero-stats { flex-wrap: wrap; }
+  .stat-item { padding: 20px 24px; flex: 1 1 50%; }
+  .about { grid-template-columns: 1fr; gap: 40px; }
+  .apps-grid { grid-template-columns: 1fr; }
+  .app-card:nth-child(2n) { border-right: 1px solid var(--border); }
+  .app-card:nth-child(3) { border-bottom: 1px solid var(--border); }
+  .app-card.outlier { grid-column: span 1; grid-template-columns: 1fr; }
+  .traction-grid { grid-template-columns: 1fr; gap: 16px; }
+  .invest-grid { grid-template-columns: 1fr; gap: 40px; }
+  .roadmap-timeline::before { left: 80px; }
+  .roadmap-item { grid-template-columns: 80px 1fr; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
 }
 </style>
+</head>
+<body>
 
-<div class="bg"></div>
+<!-- ── NAV / HERO ── -->
+<section class="hero">
+  <nav>
+    <div class="nav-logo">
+      <img src="/logo.png" alt="SignalRoutes" class="nav-logo-img">Signal<span>Routes</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#apps">Products</a></li>
+      <li><a href="#traction">Traction</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#invest" class="nav-cta">Connect</a></li>
+    </ul>
+  </nav>
 
-<div id="scene">
-
-  <!-- CENTER -->
-  <div class="hub">
-    <div class="hub-card" onclick="openModal(event,'signal')">
-      <div class="logo-wrap"><img src="/logo.png" /></div>
-      <h3>SignalRoutes</h3>
-      <p>Clear signals. Better decisions.</p>
-      <p style="font-size:13px;">
-        A system of tools designed to cut through noise across money, business, news, and compliance.
-      </p>
+  <div class="hero-body">
+    <div class="hero-eyebrow">SignalRoutes · Ellensburg, WA · Est. 2025</div>
+    <h1 class="hero-headline">Tools that cut<br>through the <em>noise.</em></h1>
+    <p class="hero-sub">A suite of practical software products helping founders, individuals, and organizations make clearer decisions — about money, business, news, and compliance.</p>
+    <div class="hero-actions">
+      <a href="#apps" class="btn-primary">Explore Products</a>
+      <a href="#invest" class="btn-secondary">Talk to Us</a>
     </div>
   </div>
 
-  <!-- CARDS -->
-  <div class="card top-left" onclick="openModal(event,'founder')">
-    <div class="logo-wrap"><img src="/founderroutes.png" /></div>
-    <h3>FounderRoutes</h3>
-    <p>Build your business with direction—not guesswork.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Products in portfolio</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">States launched · WA · CA · NY</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">10+</span>
+      <span class="stat-label">Beta testers active</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Apr '26</span>
+      <span class="stat-label">SpendScore Play Store launch</span>
+    </div>
   </div>
+</section>
 
-  <div class="card top-right" onclick="openModal(event,'spend')">
-    <div class="logo-wrap"><img src="/spendscore.png" /></div>
-    <h3>SpendScore</h3>
-    <p>Understand your money in real time and build better habits.</p>
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div>
+    <div class="section-label reveal">The Story</div>
+    <h2 class="section-title reveal">Built by a founder,<br>for founders.</h2>
+    <div class="about-body reveal">
+      <p>SignalRoutes was born out of a simple frustration: <strong>too much noise, not enough signal.</strong> Starting and running a business in Washington meant navigating a maze of regulations, financial tools, and information sources — none of them designed to work together.</p>
+      <p>So we built the tools we wished existed. Each product in the SignalRoutes portfolio solves a real, specific problem — and together they form a system for <strong>clearer thinking and better decisions</strong> across every stage of business and personal growth.</p>
+      <p>Bootstrapped, profitable-path focused, and building in public from Ellensburg, WA.</p>
+    </div>
   </div>
-
-  <div class="card bottom-left" onclick="openModal(event,'source')">
-    <div class="logo-wrap"><img src="/sourcebrief.png" /></div>
-    <h3>SourceBrief</h3>
-    <p>The news, distilled. What matters. Nothing extra.</p>
+  <div class="about-right reveal">
+    <div class="founder-card">
+      <div class="founder-name">Laile Fletcher</div>
+      <div class="founder-title">Founder · Developer · Operator</div>
+      <div class="founder-bio">Solo founder building a portfolio of practical SaaS tools from Ellensburg, WA. Background spanning fintech compliance, small business operations, and software development. Every product is built, tested, and shipped by someone who uses it.</div>
+      <div class="tag-row">
+        <span class="tag">Bootstrapped</span>
+        <span class="tag">Ellensburg WA</span>
+        <span class="tag">SaaS</span>
+        <span class="tag">Solo Founder</span>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="card bottom-right" onclick="openModal(event,'compliance')">
-    <div class="logo-wrap"><img src="/compliance.png" /></div>
-    <h3>ComplianceIQ</h3>
-    <p>Stay ahead of compliance without overwhelm.</p>
+<!-- ── PRODUCTS ── -->
+<section class="apps-section" id="apps">
+  <div class="section-label reveal">The Portfolio</div>
+  <h2 class="section-title reveal">Four products.<br>One clear mission.</h2>
+
+  <div class="apps-grid reveal">
+
+    <!-- FounderRoutes -->
+    <div class="app-card">
+      <div class="app-num">01</div>
+      <img src="/founderroutes.png" alt="FounderRoutes" class="app-logo">
+      <div class="app-name">FounderRoutes</div>
+      <div class="app-tagline">Build your business with direction — not guesswork.</div>
+      <div class="app-desc">A 12-module guided curriculum for new and early-stage founders navigating the real complexity of starting a business — licensing, compliance, structure, and operations — built specifically for WA, CA, and NY. Think of it as having a knowledgeable advisor in your pocket, available 24/7.</div>
+      <div class="app-meta">
+        <span class="status-badge status-beta"><span class="status-dot"></span>Beta · 3 States</span>
+        <span class="price-tag">$39.99 / mo Core · $79.99 / mo Pro</span>
+      </div>
+      <br>
+      <a href="https://founder-routes-app-rep-production.up.railway.app" target="_blank" class="app-link">Request Beta Access →</a>
+    </div>
+
+    <!-- SpendScore -->
+    <div class="app-card">
+      <div class="app-num">02</div>
+      <img src="/spendscore.png" alt="SpendScore" class="app-logo">
+      <div class="app-name">SpendScore</div>
+      <div class="app-tagline">Understand your money in real time.</div>
+      <div class="app-desc">A mobile-first personal finance app that scores your spending behavior and builds better financial habits over time. Designed for people who want insight, not just tracking. Launching on Google Play mid-April 2026 — available in the US, EU, and Canada. Monetized via subscription and AdMob ad revenue.</div>
+      <div class="app-meta">
+        <span class="status-badge status-live"><span class="status-dot"></span>Launching Apr 2026</span>
+        <span class="price-tag">$4.99 / mo · + AdMob</span>
+      </div>
+      <br>
+      <a href="https://signalroutes.start.page" target="_blank" class="app-link">Join Waitlist →</a>
+    </div>
+
+    <!-- SourceBrief -->
+    <div class="app-card">
+      <div class="app-num">03</div>
+      <img src="/sourcebrief.png" alt="SourceBrief" class="app-logo">
+      <div class="app-name">SourceBrief</div>
+      <div class="app-tagline">The news, distilled. What matters. Nothing extra.</div>
+      <div class="app-desc">An AI-powered daily news brief that synthesizes trusted sources into one clean, personalized summary. You pick your topics, SourceBrief does the work. Built for busy professionals who are tired of doomscrolling but need to stay informed. <strong>Available worldwide</strong> — live and accepting subscribers now.</div>
+      <div class="app-meta">
+        <span class="status-badge status-live"><span class="status-dot"></span>Live · Global</span>
+        <span class="price-tag">$4.99 / mo Pro</span>
+      </div>
+      <br>
+      <a href="https://sourcebrief.org" target="_blank" class="app-link">Try SourceBrief →</a>
+    </div>
+
+    <!-- ComplianceIQ -->
+    <div class="app-card outlier">
+      <div>
+        <div class="app-num">04 · Strategic Asset</div>
+        <img src="/compliance.png" alt="ComplianceIQ" class="app-logo">
+        <div class="app-name">ComplianceIQ</div>
+        <div class="app-tagline">Stay ahead of compliance without overwhelm.</div>
+        <div class="app-desc">A B2B compliance intelligence platform designed for small-to-mid size businesses navigating regulatory complexity. Currently in advanced demo stage — the most capital-intensive product in the portfolio and the highest-value opportunity. Seeking partnership, investment, or strategic acquisition conversation.</div>
+        <div class="app-meta">
+          <span class="status-badge status-pipeline"><span class="status-dot"></span>Demo Stage · B2B</span>
+          <span class="price-tag">Enterprise Pricing · TBD</span>
+        </div>
+        <br>
+        <a href="#invest" class="app-link">Discuss Partnership →</a>
+      </div>
+      <div class="outlier-badge">
+        <span class="outlier-label">Potential</span>
+        <span class="outlier-value">🎯</span>
+        <span class="outlier-label" style="margin-top:8px;">Big one.</span>
+      </div>
+    </div>
+
   </div>
+</section>
 
-</div>
+<!-- ── TRACTION ── -->
+<section class="traction" id="traction">
+  <div class="section-label reveal">Traction</div>
+  <h2 class="section-title reveal">Early, real, and moving.</h2>
 
-<div id="modal" class="modal"></div>
+  <div class="traction-grid reveal">
+    <div class="traction-item">
+      <div class="traction-num">10+</div>
+      <div class="traction-label">Active Beta Testers</div>
+      <div class="traction-note">SpendScore has 10 of 12 required testers for Google Play's closed testing program. Launch expected mid-April 2026.</div>
+    </div>
+    <div class="traction-item">
+      <div class="traction-num">5</div>
+      <div class="traction-label">FounderRoutes Demos Completed</div>
+      <div class="traction-note">Five successful walkthroughs with positive reception. 12-module curriculum covers a full year of founder guidance across WA, CA, and NY.</div>
+    </div>
+    <div class="traction-item">
+      <div class="traction-num">🌍</div>
+      <div class="traction-label">SourceBrief — Global</div>
+      <div class="traction-note">AI-powered news briefs live at sourcebrief.org. Available worldwide. Stripe payments integrated. Use code LAUNCH50 for 50% off Pro.</div>
+    </div>
+    <div class="traction-item">
+      <div class="traction-num">3</div>
+      <div class="traction-label">States · WA, CA, NY</div>
+      <div class="traction-note">FounderRoutes built for the three highest-startup-density states, with plans to expand to all 50.</div>
+    </div>
+    <div class="traction-item">
+      <div class="traction-num">$0</div>
+      <div class="traction-label">Ad Budget to Date</div>
+      <div class="traction-note">All traction to date is organic — personal outreach, social content via Buffer, and word of mouth. Paid acquisition is the next unlock.</div>
+    </div>
+    <div class="traction-item">
+      <div class="traction-num">Apr '26</div>
+      <div class="traction-label">First Public App Store Launch</div>
+      <div class="traction-note">SpendScore on Google Play — the first fully public, app-store-listed product in the portfolio and a key milestone for investor conversations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROADMAP ── -->
+<section class="roadmap" id="roadmap">
+  <div class="section-label reveal">5-Year Roadmap</div>
+  <h2 class="section-title reveal">The path to <em style="color:var(--signal);">$200K.</em></h2>
+  <p style="color:var(--muted);font-size:0.95rem;margin-top:12px;font-weight:300;" class="reveal">Year 1 → $20K &nbsp;·&nbsp; Year 2 → $60K &nbsp;·&nbsp; Year 3 → $100K &nbsp;·&nbsp; Year 4 → $150K &nbsp;·&nbsp; Year 5 → $200K gross · $140K in pocket</p>
+
+  <div class="roadmap-timeline reveal">
+
+    <div class="roadmap-item done">
+      <div class="roadmap-date">Now<br>Apr 2026</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">Foundation locked in — 3 products live or launching</div>
+        <div class="roadmap-detail">10/12 SpendScore beta testers complete. SourceBrief live globally. FounderRoutes beta open in WA, CA, NY with 5 demos done. ComplianceIQ in advanced demo stage.</div>
+        <div class="roadmap-revenue">Year 1 begins · Goal: $20K gross</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item active">
+      <div class="roadmap-date">May<br>2026</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">SpendScore hits Google Play · FounderRoutes fully public</div>
+        <div class="roadmap-detail">First public app store listing — US, EU, Canada. FounderRoutes open to all founders in WA, CA, NY. SourceBrief target: 15 paying subscribers. AdMob revenue begins.</div>
+        <div class="roadmap-revenue">Target: $160–200/mo MRR</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-date">Jun–Jul<br>2026</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">Break-even · FounderRoutes 10 core subscribers</div>
+        <div class="roadmap-detail">Both consumer apps cover their own costs. FounderRoutes 10 core subs = $400/mo. Portfolio MRR covers all operating expenses. First real profit.</div>
+        <div class="roadmap-revenue">Target: $500+/mo MRR</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-date">Oct<br>2026</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">$1,000 MRR · ComplianceIQ first B2B customer</div>
+        <div class="roadmap-detail">Portfolio at $12K ARR run rate. ComplianceIQ first revenue or signed partnership. Investment conversation supported by live, multi-product revenue. Dev partner search begins.</div>
+        <div class="roadmap-revenue">$1,000 MRR · $12K ARR · Year 1 on track</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-date">Year 2<br>2027</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">$5,000 MRR · FounderRoutes all 50 states · ComplianceIQ deal</div>
+        <div class="roadmap-detail">National FounderRoutes expansion complete — every state covered. $60K ARR run rate. ComplianceIQ buyout, investment, or enterprise licensing — the portfolio's single biggest upside event. Media/growth partner engaged.</div>
+        <div class="roadmap-revenue">$5,000 MRR · $60K ARR · $42K take-home</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-date">Year 3<br>2028</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">$8,300 MRR · SpendScore iOS launch · SourceBrief premium tiers</div>
+        <div class="roadmap-detail">SpendScore expands to Apple App Store. SourceBrief adds team/corporate plans. FounderRoutes Pro tier scaling. Portfolio generating consistent $100K annual gross. Systems in place, growth is compounding.</div>
+        <div class="roadmap-revenue">$8,300 MRR · $100K ARR · $70K take-home</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-date">Year 4<br>2029</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">$12,500 MRR · Portfolio fully systematized</div>
+        <div class="roadmap-detail">All four products generating consistent revenue. FounderRoutes at scale across all 50 states. Paid acquisition running profitably. First hire or key contractor. Business largely runs without daily intervention.</div>
+        <div class="roadmap-revenue">$12,500 MRR · $150K ARR · $105K take-home</div>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-date">Year 5<br>2030 🎯</div>
+      <div class="roadmap-content">
+        <div class="roadmap-title">$200K gross · Semi-passive income · Travel mode 🌍</div>
+        <div class="roadmap-detail">The goal achieved. $16,600+ MRR across the portfolio. $140K take-home after all fees, store cuts, and taxes. Location-independent. Built from Ellensburg, WA — runs from anywhere in the world.</div>
+        <div class="roadmap-revenue" style="color:var(--green);font-weight:600;">$200K GROSS · $140K IN POCKET · FREEDOM 🌍</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── INVEST / CONNECT ── -->
+<section class="invest" id="invest">
+  <div class="section-label">Let's Talk</div>
+  <h2 class="section-title">Users, partners,<br>and investors welcome.</h2>
+
+  <div class="invest-grid">
+    <div class="invest-left">
+      <p>SignalRoutes is at an inflection point. <strong>Two products are live or launching within weeks.</strong> FounderRoutes has a proven curriculum and warm market. ComplianceIQ represents a significant B2B opportunity that needs the right partner to unlock.</p>
+      <p>We're not looking for a check to figure things out — we're looking for <strong>the right people to grow faster</strong> than bootstrapping alone allows.</p>
+
+      <ul class="needs-list">
+        <li>
+          <span class="need-icon">👨‍💻</span>
+          <div>
+            <div class="need-title">Development Partner</div>
+            <div class="need-desc">To accelerate FounderRoutes state expansion (50 states) and ComplianceIQ build-out. Bugs exist, features are queued, and there's more to build than one person can handle.</div>
+          </div>
+        </li>
+        <li>
+          <span class="need-icon">📣</span>
+          <div>
+            <div class="need-title">Media / Growth Partner</div>
+            <div class="need-desc">Content, distribution, and paid acquisition strategy. Organic-only has gotten us here — the next stage needs amplification, especially for FounderRoutes in WA, CA, and NY.</div>
+          </div>
+        </li>
+        <li>
+          <span class="need-icon">🤝</span>
+          <div>
+            <div class="need-title">Strategic / Channel Partner</div>
+            <div class="need-desc">Organizations serving new founders — SBDCs, chambers, accelerators, CPAs, attorneys. FounderRoutes is a natural complement to any service touching early-stage businesses.</div>
+          </div>
+        </li>
+        <li>
+          <span class="need-icon">💼</span>
+          <div>
+            <div class="need-title">ComplianceIQ Investor or Acquirer</div>
+            <div class="need-desc">The highest-value asset in the portfolio. A B2B compliance platform with a working demo and a clear market. Looking for the right conversation — investment, partnership, or acquisition.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h3>Ready to connect?</h3>
+      <p>Whether you're a potential user, a channel partner, an investor, or just curious — pick the option that fits best.</p>
+      <div class="contact-options">
+        <a href="mailto:connect@signalroutes.work" class="contact-btn highlight">
+          <span class="contact-btn-icon">✉️</span>
+          <div class="contact-btn-text">
+            <strong>Investor / Partner Inquiry</strong>
+            <span>connect@signalroutes.work</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/laile-fletcher-36748135" target="_blank" class="contact-btn">
+          <span class="contact-btn-icon">💼</span>
+          <div class="contact-btn-text">
+            <strong>Connect on LinkedIn</strong>
+            <span>Laile Fletcher · Founder, SignalRoutes</span>
+          </div>
+        </a>
+        <a href="https://sourcebrief.org" target="_blank" class="contact-btn">
+          <span class="contact-btn-icon"><img src="/sourcebrief.png" class="app-logo-sm" alt="SourceBrief"></span>
+          <div class="contact-btn-text">
+            <strong>Try SourceBrief Free</strong>
+            <span>sourcebrief.org · Live worldwide</span>
+          </div>
+        </a>
+        <a href="https://founder-routes-app-rep-production.up.railway.app" target="_blank" class="contact-btn">
+          <span class="contact-btn-icon"><img src="/founderroutes.png" class="app-logo-sm" alt="FounderRoutes"></span>
+          <div class="contact-btn-text">
+            <strong>FounderRoutes Beta Access</strong>
+            <span>WA · CA · NY · 2-module free demo</span>
+          </div>
+        </a>
+        <a href="https://signalroutes.start.page" target="_blank" class="contact-btn">
+          <span class="contact-btn-icon">🔗</span>
+          <div class="contact-btn-text">
+            <strong>All Links + SpendScore Waitlist</strong>
+            <span>signalroutes.start.page</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">
+    <img src="/logo.png" alt="" class="nav-logo-img">Signal<span>Routes</span>
+  </div>
+  <div class="footer-note">© 2026 SignalRoutes · Laile Fletcher · Ellensburg, WA · Built by a founder, for founders.</div>
+</footer>
 
 <script>
-window.closeModal = function() {
-  document.getElementById('modal').style.display = 'none';
-}
-
-window.openModal = function(e,type) {
-  const modal = document.getElementById('modal');
-  const formLink = "https://forms.gle/QB4RgS2FrzicuuJf7";
-
-  const data = {
-    signal: {
-  title: "SignalRoutes",
-  text: "SignalRoutes is a suite of clarity tools for people and businesses drowning in noise. We help you understand your money with SpendScore, stay informed without doom scrolling with SourceBrief, get business direction with FounderRoutes, and stay compliant without overwhelm with ComplianceIQ. One brand. Four tools. Total clarity.",
-  extra: "Explore the ecosystem or connect to learn more.",
-  cta: "Connect / Learn More"
-},
-    founder: {
-      title: "FounderRoutes",
-      text: "Get clear direction on what to do next in your business—without guesswork.",
-      extra: "Built for founders and operators who want clarity.",
-      cta: "Get access",
-      link: "https://founder-routes-app-rep-production.up.railway.app/"
-    },
-    spend: {
-      title: "SpendScore",
-      text: "Understand your money, track your habits, and improve decisions.",
-      extra: "Launching soon — early access available.",
-      cta: "Join early access"
-    },
-    source: {
-      title: "SourceBrief",
-      text: "The news that actually matters — in under 5 minutes.",
-      extra: "Published daily, emailed to you. Built for clarity without noise.",
-      cta: "Subscribe",
-      link: "https://sourcebrief.org"
-    },
-    compliance: {
-      title: "ComplianceIQ",
-      text: "Simplified compliance without overwhelm.",
-      extra: "Designed for business owners who need clarity.",
-      cta: "Get updates"
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
     }
-  };
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  const item = data[type];
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  modal.innerHTML = `
-  <h3>${item.title}</h3>
-  <p>${item.text}</p>
-  <p>${item.extra}</p>
-
-  ${item.link ? `
-  <a href="${item.link}" target="_blank" style="margin-right:10px;">
-    Visit →
-  </a>
-` : ``}
-
-${type !== 'source' ? `
-  <a href="${formLink}" target="_blank">
-    ${item.cta} →
-  </a>
-` : `
-  <a href="${item.link}" target="_blank">
-    ${item.cta} →
-  </a>
-`}
-
-  <div class="close" onclick="closeModal()">Close</div>
-`;
-
-  modal.style.display = 'block';
-
-  if (window.innerWidth < 900) {
-    modal.style.left = "0px";
-    modal.style.top = "0px";
-    return;
-  }
-
-  const rect = e.currentTarget.getBoundingClientRect();
-
-  if (rect.left > window.innerWidth / 2) {
-    modal.style.left = (rect.left - 380 - 25) + "px";
-  } else {
-    modal.style.left = (rect.right + 25) + "px";
-  }
-
-  modal.style.top = rect.top + "px";
-};
+// Stagger grid children on reveal
+document.querySelectorAll('.traction-grid .traction-item, .apps-grid .app-card').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.08}s`;
+});
 </script>
+
+</body>
+</html>
