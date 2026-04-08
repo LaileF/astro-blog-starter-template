@@ -280,6 +280,48 @@ section { padding: 100px 48px; }
 .app-card:hover { background: var(--warm); }
 .app-card:nth-child(2n) { border-right: none; }
 .app-card:nth-child(3), .app-card:nth-child(4) { border-bottom: none; }
+/* FounderRoutes flagship — full width, paper color, no color change */
+.app-card.flagship {
+  grid-column: span 2;
+  border-right: none;
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 60px;
+}
+.app-card.flagship:hover { background: var(--warm); }
+.flagship-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+}
+.flagship-stat {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--warm);
+}
+.flagship-stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--signal);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.flagship-stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+/* middle row: SpendScore + SourceBrief — 2nd and 3rd children after flagship */
+.app-card.middle { border-bottom: 1px solid var(--border); }
+.app-card.middle:last-of-type { border-bottom: none; }
+/* outlier = ComplianceIQ */
 .app-card.outlier {
   grid-column: span 2;
   border-bottom: none;
@@ -464,6 +506,7 @@ footer {
   .stat-item { padding: 20px 24px; flex: 1 1 50%; }
   .about { grid-template-columns: 1fr; gap: 40px; }
   .apps-grid { grid-template-columns: 1fr; }
+  .app-card.flagship { grid-column: span 1; grid-template-columns: 1fr; gap: 32px; }
   .app-card:nth-child(2n) { border-right: 1px solid var(--border); }
   .app-card:nth-child(3) { border-bottom: 1px solid var(--border); }
   .app-card.outlier { grid-column: span 1; grid-template-columns: 1fr; }
@@ -551,32 +594,17 @@ footer {
 <!-- ── PRODUCTS ── -->
 <section class="apps-section" id="apps">
   <div class="section-label reveal">The Portfolio</div>
-  <h2 class="section-title reveal">Four products.<br>One clear mission.</h2>
+  <h2 class="section-title reveal">Proof of execution.<br><em style="color:var(--signal);">Then the opportunity.</em></h2>
 
   <div class="apps-grid reveal">
 
-    <!-- FounderRoutes -->
-    <div class="app-card">
-      <div class="app-num">01</div>
-      <img src="/founderroutes.png" alt="FounderRoutes" class="app-logo">
-      <div class="app-name">FounderRoutes</div>
-      <div class="app-tagline">Build your business with direction — not guesswork.</div>
-      <div class="app-desc">A 12-module guided curriculum for new and early-stage founders navigating the real complexity of starting a business — licensing, compliance, structure, and operations — built specifically for WA, CA, and NY. Think of it as having a knowledgeable advisor in your pocket, available 24/7.</div>
-      <div class="app-meta">
-        <span class="status-badge status-beta"><span class="status-dot"></span>Beta · 3 States</span>
-        <span class="price-tag">$39.99 / mo Core · $79.99 / mo Pro</span>
-      </div>
-      <br>
-      <a href="https://founder-routes-app-rep-production.up.railway.app" target="_blank" class="app-link">Request Beta Access →</a>
-    </div>
-
-    <!-- SpendScore -->
-    <div class="app-card">
-      <div class="app-num">02</div>
+    <!-- SpendScore — Proof of execution #1 -->
+    <div class="app-card middle">
+      <div class="app-num">01 · Live & Shipping</div>
       <img src="/spendscore.png" alt="SpendScore" class="app-logo">
       <div class="app-name">SpendScore</div>
       <div class="app-tagline">Understand your money in real time.</div>
-      <div class="app-desc">A mobile-first personal finance app that scores your spending behavior and builds better financial habits over time. Designed for people who want insight, not just tracking. Launching on Google Play mid-April 2026 — available in the US, EU, and Canada. Monetized via subscription and AdMob ad revenue.</div>
+      <div class="app-desc">A mobile-first personal finance app that scores your spending behavior and builds better financial habits over time. Launching on Google Play mid-April 2026 — available in the US, EU, and Canada. Monetized via subscription and AdMob ad revenue.</div>
       <div class="app-meta">
         <span class="status-badge status-live"><span class="status-dot"></span>Launching Apr 2026</span>
         <span class="price-tag">$4.99 / mo · + AdMob</span>
@@ -585,9 +613,9 @@ footer {
       <a href="https://signalroutes.start.page" target="_blank" class="app-link">Join Waitlist →</a>
     </div>
 
-    <!-- SourceBrief -->
-    <div class="app-card">
-      <div class="app-num">03</div>
+    <!-- SourceBrief — Proof of execution #2 -->
+    <div class="app-card middle">
+      <div class="app-num">02 · Live & Global</div>
       <img src="/sourcebrief.png" alt="SourceBrief" class="app-logo">
       <div class="app-name">SourceBrief</div>
       <div class="app-tagline">The news, distilled. What matters. Nothing extra.</div>
@@ -598,6 +626,41 @@ footer {
       </div>
       <br>
       <a href="https://sourcebrief.org" target="_blank" class="app-link">Try SourceBrief →</a>
+    </div>
+
+    <!-- FounderRoutes — Flagship investment opportunity -->
+    <div class="app-card flagship">
+      <div>
+        <div class="app-num">03 · Investment Opportunity</div>
+        <img src="/founderroutes.png" alt="FounderRoutes" class="app-logo">
+        <div class="app-name">FounderRoutes</div>
+        <div class="app-tagline">Build your business with direction — not guesswork.</div>
+        <div class="app-desc">A 12-module guided curriculum for new and early-stage founders navigating the real complexity of starting a business — licensing, compliance, structure, and operations — built specifically for WA, CA, and NY. The curriculum is complete and proven. The opportunity is national scale across all 50 states, with government, SBDC, and institutional channel partnerships waiting to be unlocked.</div>
+        <div class="app-meta">
+          <span class="status-badge status-beta"><span class="status-dot"></span>Beta · 3 States</span>
+          <span class="price-tag">$39.99 / mo Core · $79.99 / mo Pro</span>
+        </div>
+        <br>
+        <a href="https://founder-routes-app-rep-production.up.railway.app" target="_blank" class="app-link">Request Beta Access →</a>
+      </div>
+      <div class="flagship-right">
+        <div class="flagship-stat">
+          <div class="flagship-stat-num">50</div>
+          <div class="flagship-stat-label">States of addressable market</div>
+        </div>
+        <div class="flagship-stat">
+          <div class="flagship-stat-num">5</div>
+          <div class="flagship-stat-label">Demos completed · 100% positive</div>
+        </div>
+        <div class="flagship-stat">
+          <div class="flagship-stat-num">12</div>
+          <div class="flagship-stat-label">Modules · Full curriculum complete</div>
+        </div>
+        <div class="flagship-stat">
+          <div class="flagship-stat-num">∞</div>
+          <div class="flagship-stat-label">Scale with dev + gov channel partner</div>
+        </div>
+      </div>
     </div>
 
     <!-- ComplianceIQ -->
