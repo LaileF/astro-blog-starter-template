@@ -75,9 +75,9 @@ Planned improvements:
 
 ## 🌐 Live Projects
 
-* FounderRoutes → https://founder-routes-app-rep-production.up.railway.app/
+* FounderRoutes → https://founderroutes.com/
 * SourceBrief → https://sourcebrief.org/
-* SpendScore → (launching May)
+* SpendScore → https://play.google.com/store/apps/details?id=com.spendscore.app
 * ComplianceIQ → (in development)
 
 ---
